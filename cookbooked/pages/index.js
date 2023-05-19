@@ -6,31 +6,48 @@ import Image from 'next/image'
 
 import { Heading } from '../components/styles/Text'
 import { Tag } from '../components/styles/Tag'
+import { TagTwoTone } from '@mui/icons-material'
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   try {
-    await clientPromise
-    // `await clientPromise` will use the default database passed in the MONGODB_URI
-    // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-    //
-    // `const client = await clientPromise`
-    // `const db = client.db("myDatabase")`
-    //
-    // Then you can execute queries against your database like so:
-    // db.find({}) or any of the MongoDB Node Driver commands
+      const client = await clientPromise;
+      const db = client.db("data");
 
-    return {
-      props: { isConnected: true },
-    }
+      const recipes = await db
+            .collection("library")
+            .find({})
+            .limit(1000)
+            .toArray();
+
+      return {
+          props: { recipes: JSON.parse(JSON.stringify(recipes)) },
+      };
   } catch (e) {
-    console.error(e)
-    return {
-      props: { isConnected: false },
-    }
+      console.error(e);
   }
+  // try {
+  //   await clientPromise
+  //   // `await clientPromise` will use the default database passed in the MONGODB_URI
+  //   // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
+  //   //
+  //   // `const client = await clientPromise`
+  //   // `const db = client.db("myDatabase")`
+  //   //
+  //   // Then you can execute queries against your database like so:
+  //   // db.find({}) or any of the MongoDB Node Driver commands
+
+  //   return {
+  //     props: { isConnected: true },
+  //   }
+  // } catch (e) {
+  //   console.error(e)
+  //   return {
+  //     props: { isConnected: false },
+  //   }
+  // }
 }
 
-export default function Home({isConnected}){
+export default function Home({recipes}){
   return (
     <div>
         <div className="flex flex-col items-center h-screen mx-auto mt-8">
@@ -86,12 +103,44 @@ export default function Home({isConnected}){
               </div>
           </div>
         </Link>
+        {recipes.map((recipe) => (
+            <Link href="/recipe/apple_pie" className="flex flex-col mt-32 w-7/12">
+            <div className="flex items-center rounded-lg px-10 py-10 card-drop mb-6 bg-bg_white">
+                <div className="flex flex-col">
+                  <div className="flex">
+                    <span className="font-medium text-xl mr-2">{recipe.recipe}</span>
+                    <Image
+                      src="/tikka-masala.png"
+                      alt="tikka masala icon"
+                      width="28"
+                      height="28"
+                    />
+                  </div>
+                
+                  <span className="text-gray-700 text-base">
+                      {
+                      recipe.duration.hour > 0
+                      ? recipe.duration.hour + " hr " + recipe.duration.minutes
+                      : recipe.duration.minutes + " min"
+                    }
+                  </span>
+                </div>
+                <div className="ml-auto">
+                  {recipe.tags.map((tag) => (
+                    <Tag background={'bg-purple'}>{tag}</Tag>
+                  ))}
+                  {/* <Tag background={'bg-purple'}>dessert</Tag>
+                  <Tag background={'bg-light_pink'}>baking</Tag> */}
+                </div>
+            </div>
+          </Link>
+        ))}
       </div>
       <Head>
-        <title>Create Next App</title>
+        <title>CookBooked</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+{/* 
       <main>
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
@@ -109,7 +158,7 @@ export default function Home({isConnected}){
         <p className="description">
           Get started by editing <code>pages/index.js</code>
         </p>
-        </main>
+        </main> */}
     </div>
   )
 }
