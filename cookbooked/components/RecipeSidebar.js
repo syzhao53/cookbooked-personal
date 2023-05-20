@@ -33,11 +33,11 @@ const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) =
                 )}
                 {<span>{sectionName}</span>}
               </div>
-              {/* {sectionName !== allSections.INTRO && (
+              {sectionIdx !== 0 && (
                 <span className="pl-16 text-base text-gray">
-                  {sectionTimes[sectionKey]}
+                  10 min
                 </span>
-              )} */}
+              )}
             </div>
           )
         }

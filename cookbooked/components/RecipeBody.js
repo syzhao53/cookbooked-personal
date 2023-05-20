@@ -119,7 +119,12 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers}) => {
                 {steps[section].map((step, idx) => (
                     <div>
                         <Checkbox step>
-                            {idx + 1 + ". " + step}
+                            <div className="flex flex-row">
+                                <span>{idx + 1 + "."}&nbsp;</span>
+                                <span>
+                                    {step}
+                                </span>
+                            </div>
                         </Checkbox>
                         <IngredientSubtext ingredientsList={ingreds[section][idx]} quants={ingreds.quantities} units={ingreds.units}/>
                     </div>

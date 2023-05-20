@@ -2,17 +2,21 @@ import { Checkbox } from './Checkbox'
 import { Heading, SubHeading } from './styles/Text'
 import { Tag } from './styles/Tag'
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 // import { useIngredient } from '@/hooks/useIngredient'
 
 const RecipeIntro = ({recipe, ingreds, steps, timers}) => {
 //   const [ingredients, servingSelected, changeServing, getIngredient] =
 //     useIngredient()
-//   const servingOptions = [
-//     { multiplier: 0.5, display: '1/2' },
-//     { multiplier: 1, display: 'Original' },
-//     { multiplier: 2, display: 'x2' },
-//     { multiplier: 3, display: 'x3' },
-//   ]
+
+const [servMult, setServMult] = useState(1);
+
+  const servingOptions = [
+    { multiplier: 0.5, display: '1/2' },
+    { multiplier: 1, display: 'Original' },
+    { multiplier: 2, display: 'x2' },
+    { multiplier: 3, display: 'x3' },
+  ]
 
   return (
     <>
@@ -40,8 +44,8 @@ const RecipeIntro = ({recipe, ingreds, steps, timers}) => {
             </span>
           </div>
           <div className="mt-4">
-            {/* <span className="font-medium pr-2">Servings:</span>
-            {servingOptions.map((serving) => (
+            <span className="font-medium pr-2">Servings:</span>
+            {/* {servingOptions.map((serving) => (
               <button
                 key={serving.display}
                 className={`${
@@ -85,14 +89,6 @@ const RecipeIntro = ({recipe, ingreds, steps, timers}) => {
                 {/* {ingreds.quantities[ingred] + " " + ingreds.units[ingred] + " " + ingred} */}
             </Checkbox>
           ))}
-          {/* <Checkbox>8-10 medium apples (thinly sliced)</Checkbox>
-          <Checkbox>1 teaspoon salt</Checkbox>
-          <Checkbox>4 tablespoons sugar</Checkbox>
-          <Checkbox>2 sticks of butter, cut into small pieces</Checkbox>
-          <Checkbox>3 cups all-purpose flour</Checkbox>
-          <Checkbox>1/2 cup ice water</Checkbox>
-          <Checkbox>1-2 teaspoons cinnamon</Checkbox>
-          <Checkbox>1 egg white</Checkbox> */}
         </div>
       </div>
       <div className="mt-10">
