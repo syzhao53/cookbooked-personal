@@ -11,19 +11,21 @@ export const SubHeading = ({ children }) => (
   <h2 className="text-2xl font-medium mb-3">{children}</h2>
 )
 
-// export const IngredientSubtext = ({ ingredientsList }) => {
-//   const [ingredients, serving, changeServing, getIngredient] = useIngredient()
+export const IngredientSubtext = ({ ingredientsList, quants, units }) => {
+  // const [ingredients, serving, changeServing, getIngredient] = useIngredient()
 
-//   return (
-//     <div classname="flex">
-//       {ingredientsList.map((ingredient, index) => (
-//         <p className="pl-10 text-gray" key={ingredient}>
-//           {getIngredient(ingredient)}
-//         </p>
-//       ))}
-//     </div>
-//   )
-// }
+  return (
+    <div classname="flex">
+      {ingredientsList.map((ingred, index) => (
+        <p className="pl-10 text-gray" key={ingred}>
+          {/* {getIngredient(ingredient)} */}
+          {units[ingred] !== null ? quants[ingred] + " " + units[ingred] + " " + ingred
+                : quants[ingred] + " " + ingred}
+        </p>
+      ))}
+    </div>
+  )
+}
 
 /**
  * Surrounds a number with a circle border (for recipe outline)

@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@primer/octicons-react": "^19.1.0",
     "mongodb": "^4.16.0",
     "next": "latest",
     "react": "^18.2.0",

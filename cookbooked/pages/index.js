@@ -8,6 +8,12 @@ import { Heading } from '../components/styles/Text'
 import { Tag } from '../components/styles/Tag'
 import { TagTwoTone } from '@mui/icons-material'
 
+
+const kebabCase = str => str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .join('-')
+    .toLowerCase();
+
 export async function getStaticProps(context) {
   try {
       const client = await clientPromise;
@@ -104,7 +110,15 @@ export default function Home({recipes}){
           </div>
         </Link>
         {recipes.map((recipe) => (
-            <Link href="/recipe/apple_pie" className="flex flex-col mt-32 w-7/12">
+          <Link href={{
+            pathname: "/recipes/[recipe]",
+            query: {
+                id: recipe.recipe,
+                data: `${JSON.stringify(recipe)}`
+            }
+          }}
+          as={`recipes/${kebabCase(recipe.recipe)}`}
+          className="flex flex-col mt-32 w-7/12">
             <div className="flex items-center rounded-lg px-10 py-10 card-drop mb-6 bg-bg_white">
                 <div className="flex flex-col">
                   <div className="flex">
