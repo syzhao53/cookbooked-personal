@@ -2,7 +2,7 @@ import React from 'react'
 import { CircleNumber } from './styles/Text'
 // import SidebarTimer from './/SidebarAccordion'
 
-const RecipeSidebar = ({ title, section, setSection, allSections }) => {
+const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) => {
 //   const [GelatinTimer, startTimer, hasStarted, timerName] = timer
 //   const [BatterTimer, startTimer2, hasStarted2, timerName2] = timer2
 

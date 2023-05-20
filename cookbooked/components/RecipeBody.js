@@ -1,10 +1,93 @@
-import { Checkbox } from '../components/Checkbox'
-import { Heading, SubHeading } from '../components/styles/Text'
-import { Tag } from '../components/styles/Tag'
-import { motion } from 'framer-motion'
+import { Checkbox } from './Checkbox'
+import { Heading, SubHeading, IngredientSubtext } from './styles/Text'
+// import { IngredientInfo } from '@/components/styles/IngredientInfo'
+// import Ingredients from '@/components/Accordion'
+import { ClockIcon } from '@primer/octicons-react'
+
+// const RecipeBody = () => {
+// //   const [DoughTimer, startTimer, hasStarted] = timer // passed in prop
+
+//   return (
+    // <>
+    //   <div className="flex justify-between mb-4">
+    //     <Heading>Pie Dough</Heading>
+    //     <button className="bg-green hover:bg-white hover:text-green border-2 border-green text-white text-sm py-2 px-6 rounded-full float-right">
+    //       Edit
+    //     </button>
+    //   </div>
+    //   <div className="flex flex-col mb-8">
+    //     <div className="w-3/4">
+    //       <div className="mb-4">
+    //         <span className="font-medium pr-2">Duration:</span>
+    //         <span>40 min</span>
+    //       </div>
+    //     </div>
+    //     <div className="flex">
+    //       <div className="w-1/2">
+    //         <SubHeading>Steps</SubHeading>
+    //         <div style={{ overflow: 'visible' }}>
+    //           <Checkbox step>
+    //             1. Sift flour, sugar, and salt together into a large bowl.
+    //           </Checkbox>
+    //           <IngredientSubtext ingredientsList={['flour', 'sugar', 'salt']} />
+    //           <Checkbox step>
+    //             2. Add cold butter to flour until clumps form.
+    //           </Checkbox>
+    //           <IngredientSubtext ingredientsList={['butter']} />
+    //           <Checkbox step>
+    //             3. Sprinkle ice water in dough if necessary.
+    //           </Checkbox>
+    //           <IngredientSubtext ingredientsList={['ice water']} />
+    //           <Checkbox step>4. Chill dough for 30 minutes.</Checkbox>
+    //           <div className="m-4" />
+    //           {/* {!hasStarted ? (
+    //             <button
+    //               className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
+    //               style={{ width: 'fit-content' }}
+    //               onClick={() => startTimer(1800, 'Chill Dough')}
+    //             >
+    //               <ClockIcon size={16} className="mr-2" />
+    //               Start Timer
+    //             </button>
+    //           ) : (
+    //             DoughTimer
+    //           )} */}
+    //           <Checkbox step>
+    //             5. Roll out the dough until it covers the pie plate.
+    //           </Checkbox>
+    //         </div>
+    //       </div>
+    //       <div className="w-1/2">
+    //         <img
+    //           className="rounded-md float-right"
+    //           src="/pie-dough.png"
+    //           alt="Pie dough"
+    //         />
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div className="flex">
+    //     <div className="mt-2">
+    //       <SubHeading>Notes</SubHeading>
+    //       <span>
+    //         If the dough is dry, sprinkle up to a tablespoon more of cold water
+    //         over the mixture.
+    //       </span>
+    //     </div>
+    //   </div>
+    // </>
+//   )
+// }
+
+// export default RecipeBody
+
+// import { Checkbox } from './Checkbox'
+// import { Heading, SubHeading } from './styles/Text'
+// import { Tag } from './styles/Tag'
+// import { motion } from 'framer-motion'
 // import { useIngredient } from '@/hooks/useIngredient'
 
-const RecipeBody = () => {
+const RecipeBody = ({recipe, ingreds, steps, timers}) => {
 //   const [ingredients, servingSelected, changeServing, getIngredient] =
 //     useIngredient()
 //   const servingOptions = [
@@ -16,83 +99,55 @@ const RecipeBody = () => {
 
   return (
     <>
-      <div className="flex justify-between">
-        <Heading>Apple Pie</Heading>
+      <div className="flex justify-between mb-4">
+        <Heading>Pie Dough</Heading>
         <button className="bg-green hover:bg-white hover:text-green border-2 border-green text-white text-sm py-2 px-6 rounded-full float-right">
           Edit
         </button>
       </div>
-      <div className="mt-4 mb-4">
-        <Tag background={'bg-purple'}>dessert</Tag>
-        <Tag background={'bg-light_pink'}>baking</Tag>
-      </div>
-      <div className="flex">
+      <div className="flex flex-col mb-8">
         <div className="w-3/4">
-          <div className="mr-6">
+          <div className="mb-4">
             <span className="font-medium pr-2">Duration:</span>
-            <span>2 hr 10 min</span>
-          </div>
-          <div className="mt-4">
-            {/* <span className="font-medium pr-2">Servings:</span>
-            {servingOptions.map((serving) => (
-              <button
-                key={serving.display}
-                className={`${
-                  serving.multiplier === servingSelected
-                    ? ''
-                    : 'hover:text-gray'
-                } relative rounded-md px-2.5 py-1 transition`}
-                style={{
-                  WebkitTapHighlightColor: 'transparent',
-                }}
-                onClick={() => changeServing(serving.multiplier)}
-              >
-                {serving.multiplier === servingSelected && (
-                  <motion.span
-                    layoutId="bubble"
-                    className="rounded-md absolute z-10 inset-0 bg-light_purple mix-blend-multiply"
-                    transition={{
-                      type: 'spring',
-                      bounce: 0.1,
-                      duration: 0.5,
-                    }}
-                  />
-                )}
-                {serving.display}
-              </button>
-            ))} */}
-          </div>
-          <div className="mt-4">
-            Homemade apple pie recipe from my grandma. Also tastes good with
-            blueberry or peach filling. Perfect for a brisk fall day :)
+            <span>40 min</span>
           </div>
         </div>
-        <img className="rounded-md" src="/apple-pie.png" alt="Apple pie" />
-      </div>
-      <div className="mt-4">
-        <SubHeading>All Ingredients</SubHeading>
-        <div className="w-3/4 gap-2 grid grid-cols-2 grid-rows-4">
-          {ingredients.map((ingredient) => (
-            <Checkbox key={ingredient.name}>
-              {getIngredient(ingredient.name)}
-            </Checkbox>
-          ))}
-          {/* <Checkbox>8-10 medium apples (thinly sliced)</Checkbox>
-          <Checkbox>1 teaspoon salt</Checkbox>
-          <Checkbox>4 tablespoons sugar</Checkbox>
-          <Checkbox>2 sticks of butter, cut into small pieces</Checkbox>
-          <Checkbox>3 cups all-purpose flour</Checkbox>
-          <Checkbox>1/2 cup ice water</Checkbox>
-          <Checkbox>1-2 teaspoons cinnamon</Checkbox>
-          <Checkbox>1 egg white</Checkbox> */}
+        <div className="flex">
+          <div className="w-1/2">
+            <SubHeading>Steps</SubHeading>
+            <div style={{ overflow: 'visible' }}>
+              <Checkbox step>
+                1. Sift flour, sugar, and salt together into a large bowl.
+              </Checkbox>
+              <IngredientSubtext ingredientsList={['flour', 'sugar', 'salt']} />
+              {/* <Checkbox step>
+                2. Add cold butter to flour until clumps form.
+              </Checkbox>
+              <IngredientSubtext ingredientsList={['butter']} />
+              <Checkbox step>
+                3. Sprinkle ice water in dough if necessary.
+              </Checkbox>
+              <IngredientSubtext ingredientsList={['ice water']} />
+              <Checkbox step>4. Chill dough for 30 minutes.</Checkbox>
+              <div className="m-4" />
+              {/* {!hasStarted ? (
+                <button
+                  className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
+                  style={{ width: 'fit-content' }}
+                  onClick={() => startTimer(1800, 'Chill Dough')}
+                >
+                  <ClockIcon size={16} className="mr-2" />
+                  Start Timer
+                </button>
+              ) : (
+                DoughTimer
+              )}
+              <Checkbox step>
+                5. Roll out the dough until it covers the pie plate.
+              </Checkbox> */}
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-10">
-        <SubHeading>Notes</SubHeading>
-        <span>
-          Use cold butter and ice water. Need to bring pie plate and fruit
-          peeler.
-        </span>
       </div>
     </>
   )
