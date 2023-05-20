@@ -91,7 +91,7 @@ export default function Recipe({recipe, ingreds, steps, timers}){
     if (section == recipe.recipe) {
       return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} timers={timers}/>
     } else {
-      return <RecipeBody />
+      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={timers}/>
     }
   }
 

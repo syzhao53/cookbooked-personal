@@ -87,7 +87,7 @@ import { ClockIcon } from '@primer/octicons-react'
 // import { motion } from 'framer-motion'
 // import { useIngredient } from '@/hooks/useIngredient'
 
-const RecipeBody = ({recipe, ingreds, steps, timers}) => {
+const RecipeBody = ({section, recipe, ingreds, steps, timers}) => {
 //   const [ingredients, servingSelected, changeServing, getIngredient] =
 //     useIngredient()
 //   const servingOptions = [
@@ -100,7 +100,7 @@ const RecipeBody = ({recipe, ingreds, steps, timers}) => {
   return (
     <>
       <div className="flex justify-between mb-4">
-        <Heading>Pie Dough</Heading>
+        <Heading>{section}</Heading>
         <button className="bg-green hover:bg-white hover:text-green border-2 border-green text-white text-sm py-2 px-6 rounded-full float-right">
           Edit
         </button>
@@ -113,38 +113,17 @@ const RecipeBody = ({recipe, ingreds, steps, timers}) => {
           </div>
         </div>
         <div className="flex">
-          <div className="w-1/2">
+          <div className="w-3/4">
             <SubHeading>Steps</SubHeading>
             <div style={{ overflow: 'visible' }}>
-              <Checkbox step>
-                1. Sift flour, sugar, and salt together into a large bowl.
-              </Checkbox>
-              <IngredientSubtext ingredientsList={['flour', 'sugar', 'salt']} />
-              {/* <Checkbox step>
-                2. Add cold butter to flour until clumps form.
-              </Checkbox>
-              <IngredientSubtext ingredientsList={['butter']} />
-              <Checkbox step>
-                3. Sprinkle ice water in dough if necessary.
-              </Checkbox>
-              <IngredientSubtext ingredientsList={['ice water']} />
-              <Checkbox step>4. Chill dough for 30 minutes.</Checkbox>
-              <div className="m-4" />
-              {/* {!hasStarted ? (
-                <button
-                  className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
-                  style={{ width: 'fit-content' }}
-                  onClick={() => startTimer(1800, 'Chill Dough')}
-                >
-                  <ClockIcon size={16} className="mr-2" />
-                  Start Timer
-                </button>
-              ) : (
-                DoughTimer
-              )}
-              <Checkbox step>
-                5. Roll out the dough until it covers the pie plate.
-              </Checkbox> */}
+                {steps[section].map((step, idx) => (
+                    <div>
+                        <Checkbox step>
+                            {idx + 1 + ". " + step}
+                        </Checkbox>
+                        <IngredientSubtext ingredientsList={ingreds[section][idx]} quants={ingreds.quantities} units={ingreds.units}/>
+                    </div>
+                ))}
             </div>
           </div>
         </div>

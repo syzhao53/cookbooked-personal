@@ -11,15 +11,16 @@ export const SubHeading = ({ children }) => (
   <h2 className="text-2xl font-medium mb-3">{children}</h2>
 )
 
-export const IngredientSubtext = ({ ingredientsList }) => {
+export const IngredientSubtext = ({ ingredientsList, quants, units }) => {
   // const [ingredients, serving, changeServing, getIngredient] = useIngredient()
 
   return (
     <div classname="flex">
-      {ingredientsList.map((ingredient, index) => (
-        <p className="pl-10 text-gray" key={ingredient}>
+      {ingredientsList.map((ingred, index) => (
+        <p className="pl-10 text-gray" key={ingred}>
           {/* {getIngredient(ingredient)} */}
-          ingredient
+          {units[ingred] !== null ? quants[ingred] + " " + units[ingred] + " " + ingred
+                : quants[ingred] + " " + ingred}
         </p>
       ))}
     </div>
