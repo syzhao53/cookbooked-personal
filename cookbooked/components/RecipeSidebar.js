@@ -2,7 +2,7 @@ import React from 'react'
 import { CircleNumber } from './styles/Text'
 // import SidebarTimer from './/SidebarAccordion'
 
-const RecipeSidebar = ({ section, setSection, allSections }) => {
+const RecipeSidebar = ({ title, section, setSection, allSections }) => {
 //   const [GelatinTimer, startTimer, hasStarted, timerName] = timer
 //   const [BatterTimer, startTimer2, hasStarted2, timerName2] = timer2
 
@@ -28,10 +28,10 @@ const RecipeSidebar = ({ section, setSection, allSections }) => {
                   section === sectionName && 'font-medium'
                 }`}
               >
-                {sectionName !== allSections.INTRO && (
+                {sectionIdx !== 0 && (
                   <CircleNumber number={sectionIdx} />
                 )}
-                <span>{sectionName}</span>
+                {<span>{sectionName}</span>}
               </div>
               {/* {sectionName !== allSections.INTRO && (
                 <span className="pl-16 text-base text-gray">

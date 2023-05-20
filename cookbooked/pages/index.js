@@ -14,7 +14,7 @@ const kebabCase = str => str
     .join('-')
     .toLowerCase();
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   try {
       const client = await clientPromise;
       const db = client.db("data");

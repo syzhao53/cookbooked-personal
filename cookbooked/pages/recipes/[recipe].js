@@ -1,11 +1,13 @@
 import RecipeSidebar from '../../components/RecipeSidebar'
 import RecipeBody from '../../components/RecipeBody'
+import NavBar from '../../components/NavBar'
+
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useEffect, useState } from 'react'
 
 export const getServerSideProps= (context)=> {
-    console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
-    console.log("DATA: " + context.query.data)
+    // console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
+    // console.log("DATA: " + context.query.data)
     return {
         // props: {
         //   recipe: context.query.id,
@@ -16,6 +18,7 @@ export const getServerSideProps= (context)=> {
   }
 
 export default function Recipe({recipe}){
+  const [title, setTitle] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
   const [section, setSection] = useLocalStorage('section', recipe.sections[0]) // TODO: ACCOUNT FOR INTRO
   const [hasMounted, setHasMounted] = useState(false)
   // const timer = useTimer()
@@ -27,13 +30,14 @@ export default function Recipe({recipe}){
   }, [])
 
   // TODO: QUERY ALL OTHER COLLECTIONS FOR FULL RECIPE INFO
-
+  
   return (
     <div>
-      <div>Helllo{recipe.recipe}</div>
+      <NavBar />
       {hasMounted && (
         <div className="flex min-h-[calc(100vh-64px)]">
           <RecipeSidebar
+            title={recipe.recipe}
             section={section}
             setSection={setSection}
             allSections={recipe.sections}
