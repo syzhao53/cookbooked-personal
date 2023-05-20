@@ -5,17 +5,60 @@ import NavBar from '../../components/NavBar'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useEffect, useState } from 'react'
 
-export const getServerSideProps= (context)=> {
-    // console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
-    // console.log("DATA: " + context.query.data)
-    return {
-        // props: {
-        //   recipe: context.query.id,
-        //   data: context.query.data //pass it to the page props
-        // }
-        props: { recipe: JSON.parse(context.query.data) },
-    }
+
+export async function getServerSideProps(context) {
+  // console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
+  // console.log("DATA: " + context.query.data)
+
+  // const client = await clientPromise;
+  //       const db = client.db("data"); // USE SAME CONNECTION HOW?
+  
+  //       const ingreds = await db
+  //             .collection("ingredients")
+  //             .find({}) // recipe: ??? how to get title
+  //             .limit(1000)
+  //             .toArray();
+  
+  return {
+      // props: {
+      //   recipe: context.query.id,
+      //   data: context.query.data //pass it to the page props
+      // }
+      props: { recipe: JSON.parse(context.query.data) },
   }
+}
+
+// WORKS
+// export const getServerSideProps= (context)=> {
+//     // console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
+//     // console.log("DATA: " + context.query.data)
+//     return {
+//         // props: {
+//         //   recipe: context.query.id,
+//         //   data: context.query.data //pass it to the page props
+//         // }
+//         props: { recipe: JSON.parse(context.query.data) },
+//     }
+//   }
+
+// export async function getStaticProps(context) {
+//   try {
+//       const client = await clientPromise;
+//       const db = client.db("data"); // USE SAME CONNECTION HOW?
+
+//       const ingreds = await db
+//             .collection("ingredients")
+//             .find({}) // recipe: ??? how to get title
+//             .limit(1000)
+//             .toArray();
+
+//       return {
+//           props: { ingreds: JSON.parse(JSON.stringify(ingreds)) },
+//       };
+//   } catch (e) {
+//       console.error(e);
+//   }
+// }
 
 export default function Recipe({recipe}){
   const [title, setTitle] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
@@ -47,6 +90,7 @@ export default function Recipe({recipe}){
           <div className="w-4/5 mt-10 px-16" style={{ marginLeft: '20%' }}>
             {/* {displaySection(section)} */}
             BODY HERE
+            {/* <RecipeBody /> */}
           </div>
         </div>
       )}
