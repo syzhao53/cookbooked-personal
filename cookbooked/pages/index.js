@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import { Heading } from '../components/styles/Text'
 import { Tag } from '../components/styles/Tag'
-import { TagTwoTone } from '@mui/icons-material'
+// import { TagTwoTone } from '@mui/icons-material'
 
 
 const kebabCase = str => str

@@ -1,7 +1,7 @@
 import { Checkbox } from './Checkbox'
 import { Heading, SubHeading } from './styles/Text'
 import { Tag } from './styles/Tag'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import { useState } from 'react'
 // import { useIngredient } from '@/hooks/useIngredient'
 
