@@ -1,15 +1,13 @@
 import { Checkbox } from './Checkbox'
 import { Heading, SubHeading } from './styles/Text'
 import { Tag } from './styles/Tag'
-// import { motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useState } from 'react'
 // import { useIngredient } from '@/hooks/useIngredient'
 
-const RecipeIntro = ({recipe, ingreds, steps, timers}) => {
+const RecipeIntro = ({recipe, ingreds, steps, timers, servMult, setServMult}) => {
 //   const [ingredients, servingSelected, changeServing, getIngredient] =
 //     useIngredient()
-
-const [servMult, setServMult] = useState(1);
 
   const servingOptions = [
     { multiplier: 0.5, display: '1/2' },
@@ -45,20 +43,20 @@ const [servMult, setServMult] = useState(1);
           </div>
           <div className="mt-4">
             <span className="font-medium pr-2">Servings:</span>
-            {/* {servingOptions.map((serving) => (
+            {servingOptions.map((serving) => (
               <button
                 key={serving.display}
                 className={`${
-                  serving.multiplier === servingSelected
+                  serving.multiplier === servMult
                     ? ''
                     : 'hover:text-gray'
                 } relative rounded-md px-2.5 py-1 transition`}
                 style={{
                   WebkitTapHighlightColor: 'transparent',
                 }}
-                onClick={() => changeServing(serving.multiplier)}
+                onClick={() => setServMult(serving.multiplier)}
               >
-                {serving.multiplier === servingSelected && (
+                {serving.multiplier === servMult && (
                   <motion.span
                     layoutId="bubble"
                     className="rounded-md absolute z-10 inset-0 bg-light_purple mix-blend-multiply"
@@ -71,7 +69,7 @@ const [servMult, setServMult] = useState(1);
                 )}
                 {serving.display}
               </button>
-            ))} */}
+            ))}
           </div>
           <div className="mt-4">
             {recipe.description}
@@ -84,8 +82,8 @@ const [servMult, setServMult] = useState(1);
         <div className="w-3/4 gap-2 grid grid-cols-2 grid-rows-4">
           {ingreds.ingredients.map((ingred) => (
             <Checkbox key={ingred}>
-                {ingreds.units[ingred] !== null ? ingreds.quantities[ingred] + " " + ingreds.units[ingred] + " " + ingred
-                : ingreds.quantities[ingred] + " " + ingred}
+                {ingreds.units[ingred] !== null ? (servMult * ingreds.quantities[ingred]) + " " + ingreds.units[ingred] + " " + ingred
+                : (servMult * ingreds.quantities[ingred]) + " " + ingred}
                 {/* {ingreds.quantities[ingred] + " " + ingreds.units[ingred] + " " + ingred} */}
             </Checkbox>
           ))}

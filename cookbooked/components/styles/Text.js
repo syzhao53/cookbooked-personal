@@ -11,7 +11,7 @@ export const SubHeading = ({ children }) => (
   <h2 className="text-2xl font-medium mb-3">{children}</h2>
 )
 
-export const IngredientSubtext = ({ ingredientsList, quants, units }) => {
+export const IngredientSubtext = ({ ingredientsList, quants, units, mult }) => {
   // const [ingredients, serving, changeServing, getIngredient] = useIngredient()
 
   return (
@@ -19,8 +19,8 @@ export const IngredientSubtext = ({ ingredientsList, quants, units }) => {
       {ingredientsList.map((ingred, index) => (
         <p className="pl-10 text-gray" key={ingred}>
           {/* {getIngredient(ingredient)} */}
-          {units[ingred] !== null ? quants[ingred] + " " + units[ingred] + " " + ingred
-                : quants[ingred] + " " + ingred}
+          {units[ingred] !== null ? (mult * quants[ingred]) + " " + units[ingred] + " " + ingred
+                : (mult * quants[ingred]) + " " + ingred}
         </p>
       ))}
     </div>
