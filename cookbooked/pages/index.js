@@ -114,7 +114,7 @@ export default function Home({recipes}){
             pathname: "/recipes/[recipe]",
             query: {
                 id: recipe.recipe,
-                data: JSON.stringify(recipe)
+                data: `${JSON.stringify(recipe)}`
             }
           }}
           as={`recipes/${kebabCase(recipe.recipe)}`}
