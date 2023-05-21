@@ -77,8 +77,10 @@ export async function getServerSideProps(context) {
 
 export default function Recipe({recipe, ingreds, steps, timers}){
   const [title, setTitle] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
-  const [section, setSection] = useLocalStorage('section', recipe.recipe) // TODO: ACCOUNT FOR INTRO
+  // const [section, setSection] = useLocalStorage('section', recipe.recipe) // TODO: ACCOUNT FOR INTRO
+  const [section, setSection] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
   const [hasMounted, setHasMounted] = useState(false)
+  const [servMult, setServMult] = useState(1);
   // const timer = useTimer()
   // const timer2 = useTimer()
 
@@ -89,9 +91,10 @@ export default function Recipe({recipe, ingreds, steps, timers}){
 
   const displaySection = (section) => {
     if (section == recipe.recipe) {
-      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} timers={timers}/>
+      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} timers={timers} servMult={servMult} setServMult={setServMult}/>
     } else {
-      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={timers}/>
+      console.log("hhhh========: " + steps[section] + " " + section)
+      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={timers} servMult={servMult} setServMult={setServMult}/>
     }
   }
 

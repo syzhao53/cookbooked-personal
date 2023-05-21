@@ -1,4 +1,4 @@
-// import { useIngredient } from '@/hooks/useIngredient'
+import { useIngredient } from '../../hooks/useIngredient'
 
 /**
  * Largest heading (font size of 36pt)
@@ -11,16 +11,15 @@ export const SubHeading = ({ children }) => (
   <h2 className="text-2xl font-medium mb-3">{children}</h2>
 )
 
-export const IngredientSubtext = ({ ingredientsList, quants, units }) => {
-  // const [ingredients, serving, changeServing, getIngredient] = useIngredient()
+export const IngredientSubtext = ({ ingredientsList, quants, units, mult }) => {
+  const [formatIngred] = useIngredient()
 
   return (
     <div classname="flex">
       {ingredientsList.map((ingred, index) => (
         <p className="pl-10 text-gray" key={ingred}>
           {/* {getIngredient(ingredient)} */}
-          {units[ingred] !== null ? quants[ingred] + " " + units[ingred] + " " + ingred
-                : quants[ingred] + " " + ingred}
+          {formatIngred(mult, quants[ingred], units[ingred], ingred)}
         </p>
       ))}
     </div>

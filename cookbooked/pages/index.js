@@ -3,6 +3,7 @@ import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import {math, fraction, format} from 'mathjs'
 
 import { Heading } from '../components/styles/Text'
 import { Tag } from '../components/styles/Tag'
@@ -53,6 +54,8 @@ export async function getStaticProps(context) {
   // }
 }
 
+// const math = create(all,  {})
+
 export default function Home({recipes}){
   return (
     <div>
@@ -67,6 +70,7 @@ export default function Home({recipes}){
               className="mr-2"
             />
             <Heading>CookBooked</Heading>
+            {/* <div>{" + " + format(fraction(.5))}</div> */}
           </div>
           <form>
             <input type="text" id="search" name="search" className="flex border-2 border-med_gray rounded-full my-8 w-80 h-10"/>
