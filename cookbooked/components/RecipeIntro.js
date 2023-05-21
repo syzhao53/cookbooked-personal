@@ -3,11 +3,11 @@ import { Heading, SubHeading } from './styles/Text'
 import { Tag } from './styles/Tag'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-// import { useIngredient } from '@/hooks/useIngredient'
+import {fraction, format} from 'mathjs'
+import { useIngredient } from '../hooks/useIngredient'
 
 const RecipeIntro = ({recipe, ingreds, steps, timers, servMult, setServMult}) => {
-//   const [ingredients, servingSelected, changeServing, getIngredient] =
-//     useIngredient()
+  const [formatIngred] = useIngredient()
 
   const servingOptions = [
     { multiplier: 0.5, display: '1/2' },
@@ -15,6 +15,32 @@ const RecipeIntro = ({recipe, ingreds, steps, timers, servMult, setServMult}) =>
     { multiplier: 2, display: 'x2' },
     { multiplier: 3, display: 'x3' },
   ]
+  
+  // const formatIngred = (quantity, unit, name) => {
+  //   let multQuant = servMult * quantity
+  //   let finalUnit = unit
+
+  //   if (finalUnit != null) {
+  //     if (multQuant > 1) {
+  //       finalUnit = unit + "s"
+  //     }
+  //   } else {
+  //     finalUnit = ''
+  //   }
+
+  //   if (multQuant % 1 != 0) {
+  //     let numString = "" + multQuant
+  //     const split = numString.split(".")
+  //     let fracString = format(fraction("." + split[1]))
+  //     const splitFrac = fracString.split("/")
+
+  //     return <span><span>{split[0] > 0 ? split[0] : ''}</span>
+  //     <span><sup>{splitFrac[0]}</sup>&frasl;<sub>{splitFrac[1]}</sub></span>
+  //     <span>{" " + finalUnit + " " + name}</span></span>
+  //   } else {
+  //     return multQuant + " " + finalUnit + " " + name
+  //   }
+  // }
 
   return (
     <>
@@ -82,8 +108,7 @@ const RecipeIntro = ({recipe, ingreds, steps, timers, servMult, setServMult}) =>
         <div className="w-3/4 gap-2 grid grid-cols-2 grid-rows-4">
           {ingreds.ingredients.map((ingred) => (
             <Checkbox key={ingred}>
-                {ingreds.units[ingred] !== null ? (servMult * ingreds.quantities[ingred]) + " " + ingreds.units[ingred] + " " + ingred
-                : (servMult * ingreds.quantities[ingred]) + " " + ingred}
+                {formatIngred(servMult, ingreds.quantities[ingred], ingreds.units[ingred], ingred)}
                 {/* {ingreds.quantities[ingred] + " " + ingreds.units[ingred] + " " + ingred} */}
             </Checkbox>
           ))}
