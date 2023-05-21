@@ -7,6 +7,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useTimer } from '../../hooks/useTimer'
 import { useEffect, useState } from 'react'
 import clientPromise from '../../lib/mongodb'
+import { sec } from 'mathjs'
 
 
 export async function getServerSideProps(context) {
@@ -106,13 +107,9 @@ export default function Recipe({recipe, ingreds, timers, steps}){
       for (const [stepNum, timerInfo] of Object.entries(sectionTimers)) {
         timerArr.push({timer: useTimer(), name: timerInfo.name, time: timerInfo.time})
         // console.log("timer ingo====: " + timerInfo.time + " " + timerInfo.name)
+        // console.log("timerArr length: " + timerArr.length)
       }
 
-      // sectionTimers.map((timer, idx) => (
-      //   timerArr.push(timer.name)
-      // ))
-
-      console.log("=======TIMERARR: " + timerArr)
       return timerArr
     } else {
       return
@@ -120,13 +117,11 @@ export default function Recipe({recipe, ingreds, timers, steps}){
   }
 
   const sections = recipe.sections
-  let allTimers = [] // store section timer arrays
+  let allTimers = [] // store section timer arrays (nested array)
 
   sections.map((section) => (
     allTimers.push(createTimers(section))
   ))
-
-  console.log("ALL TIMERS: " + allTimers)
 
   return (
     <div>
@@ -139,7 +134,7 @@ export default function Recipe({recipe, ingreds, timers, steps}){
             setSection={setSection}
             allSections={recipe.sections}
             // sectionTimes={TIMES}
-            allTimers={timers}
+            allTimers={allTimers}
           />
           <div className="w-4/5 mt-10 px-16" style={{ marginLeft: '20%' }}>
             {displaySection(section)}
