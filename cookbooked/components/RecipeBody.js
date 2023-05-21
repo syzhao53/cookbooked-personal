@@ -4,7 +4,7 @@ import { Heading, SubHeading, IngredientSubtext } from './styles/Text'
 // import Ingredients from '@/components/Accordion'
 import { ClockIcon } from '@primer/octicons-react'
 
-const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult, setServMult}) => {
+const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
 //   const [ingredients, servingSelected, changeServing, getIngredient] =
 //     useIngredient()
 //   const servingOptions = [
@@ -44,6 +44,19 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult, setServM
                             </div>
                         </Checkbox>
                         <IngredientSubtext ingredientsList={ingreds[section][idx]} quants={ingreds.quantities} units={ingreds.units} mult={servMult}/>
+                        <div>[TIMER HERE]</div>
+                        {/* {!hasStarted ? (
+                          <button
+                            className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
+                            style={{ width: 'fit-content' }}
+                            onClick={() => startTimer(3000, 'Baking')}
+                          >
+                            <ClockIcon size={16} className="mr-2" />
+                            Start Timer
+                          </button>
+                        ) : (
+                          DoughTimer
+                        )} */}
                     </div>
                 ))}
             </div>

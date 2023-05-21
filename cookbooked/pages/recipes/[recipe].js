@@ -4,17 +4,16 @@ import RecipeBody from '../../components/RecipeBody'
 import NavBar from '../../components/NavBar'
 
 import { useLocalStorage } from '../../hooks/useLocalStorage'
+import { useTimer } from '../../hooks/useTimer'
 import { useEffect, useState } from 'react'
 import clientPromise from '../../lib/mongodb'
 
 
 export async function getServerSideProps(context) {
-  // console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
-  // console.log("DATA: " + context.query.data)
   const dataArr = JSON.parse(context.query.data); // parsed recipe data
 
   const client = await clientPromise;
-  const db = client.db("data"); // USE SAME CONNECTION HOW?
+  const db = client.db("data");
   const ingreds = await db
     .collection("ingredients")
     .find({recipe: dataArr.recipe})
@@ -75,7 +74,7 @@ export async function getServerSideProps(context) {
 //   }
 // }
 
-export default function Recipe({recipe, ingreds, steps, timers}){
+export default function Recipe({recipe, ingreds, timers, steps}){
   const [title, setTitle] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
   // const [section, setSection] = useLocalStorage('section', recipe.recipe) // TODO: ACCOUNT FOR INTRO
   const [section, setSection] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
@@ -91,12 +90,43 @@ export default function Recipe({recipe, ingreds, steps, timers}){
 
   const displaySection = (section) => {
     if (section == recipe.recipe) {
-      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} timers={timers} servMult={servMult} setServMult={setServMult}/>
+      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} servMult={servMult} setServMult={setServMult}/>
     } else {
-      console.log("hhhh========: " + steps[section] + " " + section)
-      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={timers} servMult={servMult} setServMult={setServMult}/>
+      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={timers[section]} servMult={servMult}/>
     }
   }
+
+  const createTimers = (sectName) => {
+    const sectionTimers = timers[sectName]
+
+    // there are timers in the section
+    if (typeof sectionTimers !== 'undefined') {
+      let timerArr = []
+
+      for (const [stepNum, timerInfo] of Object.entries(sectionTimers)) {
+        timerArr.push({timer: useTimer(), name: timerInfo.name, time: timerInfo.time})
+        // console.log("timer ingo====: " + timerInfo.time + " " + timerInfo.name)
+      }
+
+      // sectionTimers.map((timer, idx) => (
+      //   timerArr.push(timer.name)
+      // ))
+
+      console.log("=======TIMERARR: " + timerArr)
+      return timerArr
+    } else {
+      return
+    }
+  }
+
+  const sections = recipe.sections
+  let allTimers = [] // store section timer arrays
+
+  sections.map((section) => (
+    allTimers.push(createTimers(section))
+  ))
+
+  console.log("ALL TIMERS: " + allTimers)
 
   return (
     <div>

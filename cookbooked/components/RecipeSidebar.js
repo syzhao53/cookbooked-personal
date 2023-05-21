@@ -5,6 +5,7 @@ import { CircleNumber } from './styles/Text'
 const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) => {
 //   const [GelatinTimer, startTimer, hasStarted, timerName] = timer
 //   const [BatterTimer, startTimer2, hasStarted2, timerName2] = timer2
+  let sectionTimers = allTimers[section]
 
   return (
     <div
