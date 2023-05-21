@@ -117,10 +117,11 @@ export default function Recipe({recipe, ingreds, timers, steps}){
   }
 
   const sections = recipe.sections
-  let allTimers = [] // store section timer arrays (nested array)
+  let allTimers = {} // store section timer arrays (key: section name, val: array of section timer objects)
+  let timerHooks = []
 
   sections.map((section) => (
-    allTimers.push(createTimers(section))
+    allTimers[section] = createTimers(section)
   ))
 
   return (

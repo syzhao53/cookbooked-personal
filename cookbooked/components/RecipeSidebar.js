@@ -5,7 +5,27 @@ import { CircleNumber } from './styles/Text'
 const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) => {
 //   const [GelatinTimer, startTimer, hasStarted, timerName] = timer
 //   const [BatterTimer, startTimer2, hasStarted2, timerName2] = timer2
+
+// const [
+//   [DoughTimer, startDoughTimer, hasDoughStarted],
+//   [FillingTimer, startFillingTimer, hasFillingStarted],
+//   [BakingTimer, startBakingTimer, hasBakingStarted],
+// ] = timer //             timer={[timerDough, timerFilling, timerBaking]}
+
   let sectionTimers = allTimers[section]
+  // TODO: somehow pass in array of useTimer() timers to this file from [recipe].js
+
+  // const createTimerHooks = (sectionArr) => {
+  //   if (sectionArr.length > 0) {
+
+  //   } else {
+  //     return
+  //   }
+  // }
+
+  // sectionTimers.map((sectionArr) => (
+  //   createTimerHooks(sectionArr)
+  // ))
 
   return (
     <div
