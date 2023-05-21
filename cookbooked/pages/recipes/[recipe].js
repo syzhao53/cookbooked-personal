@@ -89,40 +89,42 @@ export default function Recipe({recipe, ingreds, timers, steps}){
     setHasMounted(true)
   }, [])
 
-  const displaySection = (section) => {
-    if (section == recipe.recipe) {
-      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} servMult={servMult} setServMult={setServMult}/>
-    } else {
-      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={timers[section]} servMult={servMult}/>
-    }
-  }
-
   const createTimers = (sectName) => {
     const sectionTimers = timers[sectName]
 
     // there are timers in the section
     if (typeof sectionTimers !== 'undefined') {
-      let timerArr = []
+      let timerObj = []
 
       for (const [stepNum, timerInfo] of Object.entries(sectionTimers)) {
-        timerArr.push({timer: useTimer(), name: timerInfo.name, time: timerInfo.time})
+        timerObj[stepNum] = ({timer: useTimer(), name: timerInfo.name, time: timerInfo.time})
         // console.log("timer ingo====: " + timerInfo.time + " " + timerInfo.name)
         // console.log("timerArr length: " + timerArr.length)
       }
 
-      return timerArr
+      return timerObj
     } else {
       return
     }
   }
 
   const sections = recipe.sections
+  // ex: {Marinade: {stepNum: {timer, name, time}}}
   let allTimers = {} // store section timer arrays (key: section name, val: array of section timer objects)
   let timerHooks = []
 
   sections.map((section) => (
     allTimers[section] = createTimers(section)
   ))
+
+
+  const displaySection = (section) => {
+    if (section == recipe.recipe) {
+      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} servMult={servMult} setServMult={setServMult}/>
+    } else {
+      return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={allTimers[section]} servMult={servMult}/>
+    }
+  }
 
   return (
     <div>

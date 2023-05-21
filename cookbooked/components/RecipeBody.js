@@ -44,7 +44,20 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
                             </div>
                         </Checkbox>
                         <IngredientSubtext ingredientsList={ingreds[section][idx]} quants={ingreds.quantities} units={ingreds.units} mult={servMult}/>
-                        <div>[TIMER HERE]</div>
+                        <div>{timers !== undefined  && timers[idx + 1] !== undefined 
+                        ? !timers[idx + 1].timer[2] ? (
+                          <button
+                            className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
+                            style={{ width: 'fit-content' }}
+                            onClick={() => timers[idx + 1].timer[1](timers[idx + 1].time, timers[idx + 1].name)}
+                          >
+                            <ClockIcon size={16} className="mr-2" />
+                            Start Timer
+                          </button>
+                        ) : (
+                          timers[idx + 1].timer[0]
+                        )
+                        : ''}</div>
                         {/* {!hasStarted ? (
                           <button
                             className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"

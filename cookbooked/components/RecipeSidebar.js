@@ -1,6 +1,6 @@
 import React from 'react'
 import { CircleNumber } from './styles/Text'
-// import SidebarTimer from './/SidebarAccordion'
+import SidebarTimer from './SidebarTimer'
 
 const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) => {
 //   const [GelatinTimer, startTimer, hasStarted, timerName] = timer
@@ -12,20 +12,21 @@ const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) =
 //   [BakingTimer, startBakingTimer, hasBakingStarted],
 // ] = timer //             timer={[timerDough, timerFilling, timerBaking]}
 
-  let sectionTimers = allTimers[section]
-  // TODO: somehow pass in array of useTimer() timers to this file from [recipe].js
+  // let sectionTimers = allTimers[section] // array of section timer objects
 
-  // const createTimerHooks = (sectionArr) => {
-  //   if (sectionArr.length > 0) {
+const createSidebarTimers = () => {
+  let timerArr = []
 
-  //   } else {
-  //     return
-  //   }
-  // }
+  for (const [secName, secTimers] of Object.entries(allTimers)) {
+    if (secTimers !== undefined) {
+      for (const [stepNum, timer] of Object.entries(secTimers)) {
+        timerArr.push(<div>timer.timer[2] && <SidebarTimer timer={timer.timer} timerName={timer.name} /></div>)
+      }
+    }
+  }
 
-  // sectionTimers.map((sectionArr) => (
-  //   createTimerHooks(sectionArr)
-  // ))
+  return timerArr
+}
 
   return (
     <div
@@ -66,6 +67,12 @@ const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) =
       <div className="w-full" style={{ position: 'absolute', bottom: '0' }}>
         {/* {hasStarted && <SidebarTimer timer={timer} timerName={timerName}/>}
         {hasStarted2 && <SidebarTimer timer={timer2} timerName={timerName2}/>} */}
+        {/* {createSidebarTimers()} */}
+        {/* {sectionTimers !== undefined ? sectionTimers.map((timer) => (
+          timer.timer[2] && <SidebarTimer timer={timer.timer} timerName={timer.name} />
+        ))
+        : ''} */}
+        {allTimers["Baking"][1].timer[2] && <SidebarTimer timer={allTimers["Baking"][1].timer} timerName={allTimers["Baking"][1].name} />}
         <div className="border-t-2 border-light_gray">
           <div className="py-4 px-8">
             <span
