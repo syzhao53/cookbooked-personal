@@ -60,7 +60,7 @@ export default function Home({recipes}){
   return (
     <div>
         <div className="flex flex-col items-center h-screen mx-auto mt-8">
-        <div className="flex flex-col text-center items-center mt-36 w-screen">
+        <div className="flex flex-col text-center items-center mt-36 w-5/6 md:w-screen">
         <div className="flex">
             <Image
               src="/logo.svg"
@@ -90,7 +90,7 @@ export default function Home({recipes}){
             </div>
           </div> */}
         </div>
-        <Link href="/recipe/apple_pie" className="flex flex-col mt-32 w-7/12">
+        {/* <Link href="/recipe/apple_pie" className="flex flex-col mt-32 w-7/12">
           <div className="flex items-center rounded-lg px-10 py-10 card-drop mb-6 bg-bg_white">
               <div className="flex flex-col">
                 <div className="flex">
@@ -112,7 +112,7 @@ export default function Home({recipes}){
                 <Tag background={'bg-light_pink'}>baking</Tag>
               </div>
           </div>
-        </Link>
+        </Link> */}
         {recipes.map((recipe) => (
           <Link href={{
             pathname: "/recipes/[recipe]",
@@ -122,12 +122,18 @@ export default function Home({recipes}){
             }
           }}
           as={`recipes/${kebabCase(recipe.recipe)}`}
-          className="flex flex-col mt-32 w-7/12">
-            <div className="flex items-center rounded-lg px-10 py-10 card-drop mb-6 bg-bg_white">
+          className="flex flex-col mt-32 md:w-7/12">
+            <div className="flex items-center rounded-lg px-8 py-8 md:px-10 md:py-10 card-drop mb-6 bg-bg_white">
                 <div className="flex flex-col">
-                  <div className="flex">
-                    <span className="font-medium text-xl mr-2">{recipe.recipe}</span>
-                    <Image
+                  <div className="flex mr-12">
+                    <span className="font-medium text-lg md:text-xl mr-2">{recipe.recipe}</span>
+                    <Image className="hidden md:block"
+                      src="/tikka-masala.png"
+                      alt="tikka masala icon"
+                      width="28"
+                      height="28"
+                    />
+                    <Image className="md:hidden"
                       src="/tikka-masala.png"
                       alt="tikka masala icon"
                       width="28"
@@ -135,7 +141,7 @@ export default function Home({recipes}){
                     />
                   </div>
                 
-                  <span className="text-gray-700 text-base">
+                  <span className="text-gray-700 text-sm md:text-base">
                       {
                       recipe.duration.hour > 0
                       ? recipe.duration.hour + " hr " + recipe.duration.minutes
