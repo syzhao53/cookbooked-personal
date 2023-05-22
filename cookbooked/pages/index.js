@@ -128,13 +128,13 @@ export default function Home({recipes}){
                   <div className="flex mr-12">
                     <span className="font-medium text-lg md:text-xl mr-2">{recipe.recipe}</span>
                     <Image className="hidden md:block"
-                      src="/tikka-masala.png"
+                      src="/lemon-chicken.png"
                       alt="tikka masala icon"
                       width="28"
                       height="28"
                     />
                     <Image className="md:hidden"
-                      src="/tikka-masala.png"
+                      src="/lemon-chicken.png"
                       alt="tikka masala icon"
                       width="28"
                       height="28"
