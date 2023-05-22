@@ -6,7 +6,7 @@ import { useState } from 'react'
 import {fraction, format} from 'mathjs'
 import { useIngredient } from '../hooks/useIngredient'
 
-const RecipeIntro = ({recipe, ingreds, servMult, setServMult}) => {
+const RecipeIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
   const [formatIngred] = useIngredient()
 
   const servingOptions = [
@@ -15,44 +15,18 @@ const RecipeIntro = ({recipe, ingreds, servMult, setServMult}) => {
     { multiplier: 2, display: 'x2' },
     { multiplier: 3, display: 'x3' },
   ]
-  
-  // const formatIngred = (quantity, unit, name) => {
-  //   let multQuant = servMult * quantity
-  //   let finalUnit = unit
-
-  //   if (finalUnit != null) {
-  //     if (multQuant > 1) {
-  //       finalUnit = unit + "s"
-  //     }
-  //   } else {
-  //     finalUnit = ''
-  //   }
-
-  //   if (multQuant % 1 != 0) {
-  //     let numString = "" + multQuant
-  //     const split = numString.split(".")
-  //     let fracString = format(fraction("." + split[1]))
-  //     const splitFrac = fracString.split("/")
-
-  //     return <span><span>{split[0] > 0 ? split[0] : ''}</span>
-  //     <span><sup>{splitFrac[0]}</sup>&frasl;<sub>{splitFrac[1]}</sub></span>
-  //     <span>{" " + finalUnit + " " + name}</span></span>
-  //   } else {
-  //     return multQuant + " " + finalUnit + " " + name
-  //   }
-  // }
 
   return (
     <>
       <div className="flex justify-between">
         <Heading>{recipe.recipe}</Heading>
-        <button className="bg-green hover:bg-white hover:text-green border-2 border-green text-white text-sm py-2 px-6 rounded-full float-right">
+        <button className="bg-sage_green hover:bg-white hover:text-sage_green border-2 border-sage_green text-white text-sm py-2 px-6 rounded-full float-right">
           Edit
         </button>
       </div>
       <div className="mt-4 mb-4">
         {recipe.tags.map((tag) => (
-            <Tag background={'bg-purple'}>{tag}</Tag>
+            <Tag category={tag}>{tag}</Tag>
         ))}
       </div>
       <div className="flex">
@@ -60,11 +34,11 @@ const RecipeIntro = ({recipe, ingreds, servMult, setServMult}) => {
           <div className="mr-6">
             <span className="font-medium pr-2">Duration:</span>
             <span>
-                {
-                    recipe.duration.hour > 0
-                    ? recipe.duration.hour + " hr " + recipe.duration.minutes
-                    : recipe.duration.minutes + " min"
-                }
+              {
+                duration.total.hours > 0
+                ? duration.total.hours + " hr " + duration.total.minutes
+                : duration.total.minutes + " min"
+              }
             </span>
           </div>
           <div className="mt-4">
@@ -93,6 +67,7 @@ const RecipeIntro = ({recipe, ingreds, servMult, setServMult}) => {
                     }}
                   />
                 )}
+                {/* {serving.display == '1/2' ? <div><sup>1</sup>&frasl;<sub>2</sub></div> : serving.display} */}
                 {serving.display}
               </button>
             ))}
@@ -114,7 +89,7 @@ const RecipeIntro = ({recipe, ingreds, servMult, setServMult}) => {
           ))}
         </div>
       </div>
-      <div className="mt-10">
+      <div className="mb-10">
         <SubHeading>Notes</SubHeading>
         <span>
           Use cold butter and ice water. Need to bring pie plate and fruit

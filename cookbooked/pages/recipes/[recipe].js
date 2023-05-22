@@ -43,38 +43,6 @@ export async function getServerSideProps(context) {
   }
 }
 
-// WORKS
-// export const getServerSideProps= (context)=> {
-//     // console.log("QUERY RESTUL HAHAHHAH===========: " + context.query.id) 
-//     // console.log("DATA: " + context.query.data)
-//     return {
-//         // props: {
-//         //   recipe: context.query.id,
-//         //   data: context.query.data //pass it to the page props
-//         // }
-//         props: { recipe: JSON.parse(context.query.data) },
-//     }
-//   }
-
-// export async function getStaticProps(context) {
-//   try {
-//       const client = await clientPromise;
-//       const db = client.db("data"); // USE SAME CONNECTION HOW?
-
-//       const ingreds = await db
-//             .collection("ingredients")
-//             .find({}) // recipe: ??? how to get title
-//             .limit(1000)
-//             .toArray();
-
-//       return {
-//           props: { ingreds: JSON.parse(JSON.stringify(ingreds)) },
-//       };
-//   } catch (e) {
-//       console.error(e);
-//   }
-// }
-
 export default function Recipe({recipe, ingreds, timers, steps}){
   const [title, setTitle] = useState(recipe.recipe) // TODO: ACCOUNT FOR INTRO
   // const [section, setSection] = useLocalStorage('section', recipe.recipe) // TODO: ACCOUNT FOR INTRO
@@ -120,7 +88,7 @@ export default function Recipe({recipe, ingreds, timers, steps}){
 
   const displaySection = (section) => {
     if (section == recipe.recipe) {
-      return <RecipeIntro recipe={recipe} ingreds={ingreds} steps={steps} servMult={servMult} setServMult={setServMult}/>
+      return <RecipeIntro duration={recipe.duration}recipe={recipe} ingreds={ingreds} steps={steps} servMult={servMult} setServMult={setServMult}/>
     } else {
       return <RecipeBody section={section} recipe={recipe} ingreds={ingreds} steps={steps} timers={allTimers[section]} servMult={servMult}/>
     }
@@ -132,7 +100,7 @@ export default function Recipe({recipe, ingreds, timers, steps}){
       {hasMounted && (
         <div className="flex min-h-[calc(100vh-64px)]">
           <RecipeSidebar
-            title={recipe.recipe}
+            duration={recipe.duration}
             section={section}
             setSection={setSection}
             allSections={recipe.sections}

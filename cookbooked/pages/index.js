@@ -143,15 +143,15 @@ export default function Home({recipes}){
                 
                   <span className="text-gray-700 text-sm md:text-base">
                       {
-                      recipe.duration.hour > 0
-                      ? recipe.duration.hour + " hr " + recipe.duration.minutes
-                      : recipe.duration.minutes + " min"
+                      recipe.duration.total.hours > 0
+                      ? recipe.duration.total.hours + " hr " + recipe.duration.total.minutes
+                      : recipe.duration.total.minutes + " min"
                     }
                   </span>
                 </div>
                 <div className="ml-auto">
                   {recipe.tags.map((tag) => (
-                    <Tag background={'bg-purple'}>{tag}</Tag>
+                    <Tag category={tag}>{tag}</Tag>
                   ))}
                   {/* <Tag background={'bg-purple'}>dessert</Tag>
                   <Tag background={'bg-light_pink'}>baking</Tag> */}
