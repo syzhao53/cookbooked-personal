@@ -18,7 +18,7 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
     <>
       <div className="flex justify-between mb-4">
         <Heading>{section}</Heading>
-        <button className="bg-sage_green hover:bg-white hover:text-sage_green border-2 border-sage_green text-white text-sm py-2 px-6 rounded-full float-right">
+        <button className="hidden md:block bg-sage_green hover:bg-white hover:text-sage_green border-2 border-sage_green text-white text-sm py-2 px-6 rounded-full float-right">
           Edit
         </button>
       </div>
@@ -30,7 +30,7 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
           </div>
         </div>
         <div className="flex">
-          <div className="w-3/4">
+          <div className="md:w-3/4">
             <SubHeading>Steps</SubHeading>
             <div style={{ overflow: 'visible' }}>
                 {steps[section].map((step, idx) => (
@@ -78,6 +78,12 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="mt-10 md:mt-0 mb-10">
+        {recipe.notes[section] !== undefined && <SubHeading>Notes</SubHeading>}
+        <span>
+          {recipe.notes[section]}
+        </span>
       </div>
     </>
   )
