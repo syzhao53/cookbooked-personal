@@ -52,7 +52,7 @@ export function useTimer() {
     <button
       className={`${
         hasFinished ? 'bg-timer_green' : 'bg-white'
-      } border-2 border-green text-green text-md py-2 px-4 rounded-lg ml-10 mb-4 flex justify-between`}
+      } border-2 border-green text-green text-md py-2 px-4 rounded-lg ml-9 mb-4 flex justify-between`}
       style={{ width: '160px' }}
       disabled
     >

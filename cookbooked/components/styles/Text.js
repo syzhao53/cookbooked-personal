@@ -11,12 +11,19 @@ export const SubHeading = ({ children }) => (
   <h2 className="text-2xl font-medium mb-3">{children}</h2>
 )
 
-export const IngredientSubtext = ({ ingredientsList, quants, units, mult }) => {
+export const IngredientSubtext = ({ time, ingredientsList, quants, units, mult }) => {
   const [formatIngred] = useIngredient()
 
+  // is it mb-4 or mb-5?
   return (
     <div classname="flex">
       {ingredientsList.map((ingred, index) => (
+        // <p className={`flex ${
+        //   time ? 'mb-4' : '' 
+        // } pl-10 text-gray`} key={ingred}>
+        //   {/* {getIngredient(ingredient)} */}
+        //   {formatIngred(mult, quants[ingred], units[ingred], ingred)}
+        // </p>
         <p className="pl-10 text-gray" key={ingred}>
           {/* {getIngredient(ingredient)} */}
           {formatIngred(mult, quants[ingred], units[ingred], ingred)}

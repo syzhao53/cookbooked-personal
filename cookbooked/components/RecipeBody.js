@@ -43,7 +43,10 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
                                 </span>
                             </div>
                         </Checkbox>
-                        <IngredientSubtext ingredientsList={ingreds[section][idx]} quants={ingreds.quantities} units={ingreds.units} mult={servMult}/>
+                        <IngredientSubtext time={timers !== undefined  && timers[idx + 1] !== undefined 
+                        ? true : ''} ingredientsList={ingreds[section][idx]} quants={ingreds.quantities} units={ingreds.units} mult={servMult}/>
+                        <div className="m-4" />
+
                         <div>{timers !== undefined  && timers[idx + 1] !== undefined 
                         ? !timers[idx + 1].timer[2] ? (
                           <button
