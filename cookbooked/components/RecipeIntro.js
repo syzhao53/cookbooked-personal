@@ -30,14 +30,14 @@ const RecipeIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
           />
         </div>
 
-        <button className="hidden md:block bg-sage_green hover:bg-white hover:text-sage_green border-2 border-sage_green text-white text-sm py-1 px-4 md:py-2 md:px-6 rounded-full float-right">
+        <button className="hidden lg:block bg-sage_green hover:bg-white hover:text-sage_green border-2 border-sage_green text-white text-sm py-1 px-4 lg:py-2 lg:px-6 rounded-full float-right">
           Edit
         </button>
       </div>
       <div className="flex">
-        <div className="w-screen md:w-3/4">
-          <div className="flex flex-col md:flex-row md:items-center mt-4">
-            <div className="mb-2 md:mb-0 md:mr-6">
+        <div className="w-screen lg:w-3/4">
+          <div className="flex flex-col lg:flex-row lg:items-center mt-4">
+            <div className="mb-2 lg:mb-0 lg:mr-6">
               <span className="font-medium pr-2">Duration:</span>
               <span>
                 {
@@ -79,7 +79,7 @@ const RecipeIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
               ))}
             </div>
           </div>
-          <div className="my-2 md:mt-4 md:mb-4">
+          <div className="my-2 lg:mt-4 lg:mb-4">
             {recipe.tags.map((tag) => (
                 <Tag category={tag}>{tag}</Tag>
             ))}
@@ -92,7 +92,7 @@ const RecipeIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
       </div>
       <div className="mb-5">
         <SubHeading>All Ingredients</SubHeading>
-        <div className="md:w-3/4 md:gap-2 md:grid md:grid-cols-2 md:grid-rows-4">
+        <div className="lg:w-3/4 lg:gap-2 lg:grid lg:grid-cols-2 lg:grid-rows-4">
           {ingreds.ingredients.map((ingred) => (
             <Checkbox key={ingred}>
                 {formatIngred(servMult, ingreds.quantities[ingred], ingreds.units[ingred], ingred)}
@@ -101,7 +101,7 @@ const RecipeIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
           ))}
         </div>
       </div>
-      <div className="mt-10 md:mt-0 mb-10">
+      <div className="mt-10 lg:mt-0 mb-10">
         <SubHeading>Notes</SubHeading>
         <span>
           {recipe.notes[recipe.recipe]}

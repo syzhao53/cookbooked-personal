@@ -96,8 +96,8 @@ const NavBar = ({page, setPage}) => {
           {buttonText()}
         </Link>
         <img id="hamburger" src="/hamburger.svg"    className={`${
-        menuToggled ? 'hidden' : 'inline md:hidden'
-      } md:hidden ml-auto w-6 pt-1`} alt="hamburger menu" onClick={async () => toggleMenu()} />
+        menuToggled ? 'hidden' : 'inline lg:hidden'
+      } lg:hidden ml-auto w-6 pt-1`} alt="hamburger menu" onClick={async () => toggleMenu()} />
       </nav>
     </>
   )

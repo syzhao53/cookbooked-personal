@@ -23,7 +23,7 @@ const createSidebarTimers = () => {
 
   return (
     <div
-      className="w-1/5 pt-7 border-r-2 border-light_gray h-[calc(100vh-64px)] hidden md:block"
+      className="w-1/5 pt-7 border-r-2 border-light_gray h-[calc(100vh-64px)] hidden lg:block"
       style={{ position: 'fixed' }}
     >
       {Object.entries(allSections).map(

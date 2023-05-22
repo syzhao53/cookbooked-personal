@@ -64,7 +64,7 @@ export default function Home({recipes}){
     <div>
         <NavBar page={page} setPage={setPage}/>
         <div className="flex flex-col items-center h-screen mx-auto mt-8">
-        <div className="flex flex-col text-center items-center mt-36 w-5/6 md:w-screen">
+        <div className="flex flex-col text-center items-center mt-36 w-5/6 lg:w-screen">
         <div className="flex">
             {/* <Image
               src="/logo.svg"
@@ -126,18 +126,18 @@ export default function Home({recipes}){
             }
           }}
           as={`recipes/${kebabCase(recipe.recipe)}`}
-          className="flex flex-col mt-32 md:w-7/12">
-            <div className="flex items-center rounded-lg px-8 py-8 md:px-10 md:py-10 card-drop mb-6 bg-bg_white">
+          className="flex flex-col mt-32 lg:w-7/12">
+            <div className="flex items-center rounded-lg px-8 py-8 lg:px-10 lg:py-10 card-drop mb-6 bg-bg_white">
                 <div className="flex flex-col">
                   <div className="flex mr-12">
-                    <span className="font-medium text-lg md:text-xl mr-2">{recipe.recipe}</span>
-                    <Image className="hidden md:block"
+                    <span className="font-medium text-lg lg:text-xl mr-2">{recipe.recipe}</span>
+                    <Image className="hidden lg:block"
                       src="/lemon-chicken.png"
                       alt="tikka masala icon"
                       width="28"
                       height="28"
                     />
-                    <Image className="md:hidden"
+                    <Image className="lg:hidden"
                       src="/lemon-chicken.png"
                       alt="tikka masala icon"
                       width="28"
@@ -145,7 +145,7 @@ export default function Home({recipes}){
                     />
                   </div>
                 
-                  <span className="text-gray-700 text-sm md:text-base">
+                  <span className="text-gray-700 text-sm lg:text-base">
                       {
                       recipe.duration.total.hours > 0
                       ? recipe.duration.total.hours + " hr " + recipe.duration.total.minutes

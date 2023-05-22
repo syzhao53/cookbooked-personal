@@ -5,7 +5,7 @@
 // import { ClockIcon } from '@primer/octicons-react'
 import NavBar from '../components/NavBar'
 import EditingSidebar from '../components/EditingSidebar'
-
+import EditIntro from '../components/EditIntro'
 
 
 const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
@@ -24,8 +24,8 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
       <div className="flex min-h-[calc(100vh-64px)]">
         <EditingSidebar />
 
-        <div className="w-screen md:w-4/5 mt-10 px-8 md:px-16 md:ml-[20%]">
-          Create recipe here
+        <div className="w-screen lg:w-4/5 mt-10 px-8 lg:px-16 lg:ml-[20%]">
+          <EditIntro />
         </div>
       </div>
     </>
