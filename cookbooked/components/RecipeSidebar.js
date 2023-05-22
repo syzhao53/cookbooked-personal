@@ -2,31 +2,20 @@ import React from 'react'
 import { CircleNumber } from './styles/Text'
 import SidebarTimer from './SidebarTimer'
 
-const RecipeSidebar = ({ title, section, setSection, allSections, allTimers }) => {
-//   const [GelatinTimer, startTimer, hasStarted, timerName] = timer
-//   const [BatterTimer, startTimer2, hasStarted2, timerName2] = timer2
-
-// const [
-//   [DoughTimer, startDoughTimer, hasDoughStarted],
-//   [FillingTimer, startFillingTimer, hasFillingStarted],
-//   [BakingTimer, startBakingTimer, hasBakingStarted],
-// ] = timer //             timer={[timerDough, timerFilling, timerBaking]}
-
-  // let sectionTimers = allTimers[section] // array of section timer objects
-
+const RecipeSidebar = ({ duration, section, setSection, allSections, allTimers }) => {
 const createSidebarTimers = () => {
-  let timerArr = []
+    let timerArr = []
 
-  for (const [secName, secTimers] of Object.entries(allTimers)) {
-    if (secTimers !== undefined) {
-      for (const [stepNum, timer] of Object.entries(secTimers)) {
-        timerArr.push(timer)
+    for (const [secName, secTimers] of Object.entries(allTimers)) {
+      if (secTimers !== undefined) {
+        for (const [stepNum, timer] of Object.entries(secTimers)) {
+          timerArr.push(timer)
+        }
       }
     }
+
+    return timerArr
   }
-  // console.log("TIMER ARR: " + JSON.stringify(timerArr))
-  return timerArr
-}
 
 // var renderTimers = createSidebarTimers().map(item => <div> {item} </div>)
         // {/* {allTimers["Baking"][1].timer[2] && <SidebarTimer timer={allTimers["Baking"][1].timer} timerName={allTimers["Baking"][1].name} />} */}
@@ -61,7 +50,11 @@ const createSidebarTimers = () => {
               </div>
               {sectionIdx !== 0 && (
                 <span className="pl-16 text-base text-gray">
-                  10 min
+                  {
+                      duration[sectionName].hours > 0
+                      ? duration[sectionName].hours + " hr " + duration[sectionName].minutes
+                      : duration[sectionName].minutes + " min"
+                    }
                 </span>
               )}
             </div>

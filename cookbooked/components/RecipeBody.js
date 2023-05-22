@@ -18,7 +18,7 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
     <>
       <div className="flex justify-between mb-4">
         <Heading>{section}</Heading>
-        <button className="bg-green hover:bg-white hover:text-green border-2 border-green text-white text-sm py-2 px-6 rounded-full float-right">
+        <button className="bg-sage_green hover:bg-white hover:text-sage_green border-2 border-sage_green text-white text-sm py-2 px-6 rounded-full float-right">
           Edit
         </button>
       </div>
@@ -50,7 +50,7 @@ const RecipeBody = ({section, recipe, ingreds, steps, timers, servMult}) => {
                         <div>{timers !== undefined  && timers[idx + 1] !== undefined 
                         ? !timers[idx + 1].timer[2] ? (
                           <button
-                            className="bg-white hover:bg-green hover:text-white border-2 border-green text-green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
+                            className="bg-white hover:bg-sage_green hover:text-white border-2 border-sage_green text-sage_green text-sm py-2 px-6 rounded-full ml-8 my-4 flex items-center"
                             style={{ width: 'fit-content' }}
                             onClick={() => timers[idx + 1].timer[1](timers[idx + 1].time, timers[idx + 1].name)}
                           >
