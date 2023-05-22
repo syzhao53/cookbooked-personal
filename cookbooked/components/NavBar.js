@@ -5,7 +5,7 @@ import React from 'react'
 
 import { useState } from 'react'
 
-const NavBar = () => {
+const NavBar = ({page, setPage}) => {
   const [menuToggled, setMenuToggled] = useState(false);
 
   const toggleMenu = () => {
@@ -40,6 +40,19 @@ const NavBar = () => {
     </div>
   );
 
+  const buttonText = () => {
+    switch (page) {
+      case 'library':
+        return 'Create Recipe'
+      case 'recipe':
+        return 'Edit'
+      case 'creating':
+        return 'Create & Save'
+      default:
+        return 'Save'
+    }
+  }
+
   return (
     <>
       <Head>
@@ -58,7 +71,7 @@ const NavBar = () => {
         <link rel="icon" href="/logo.svg" />
       </Head>
       <nav
-        className="flex h-16 bg-bg_white px-9 z-50"
+        className="flex h-16 bg-bg_white px-9 z-50 items-center"
         style={{
           boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.05)',
           position: 'sticky',
@@ -75,6 +88,12 @@ const NavBar = () => {
             />
             <span className="font-medium align-middle mx-3 pt-1">CookBooked</span>
           </div>
+        </Link>
+        
+        <Link href="/create"
+          className="ml-auto bg-sage_green hover:bg-white hover:text-sage_green
+          border-2 border-sage_green text-white h-1/2 text-sm py-1 px-4 rounded-full">
+          {buttonText()}
         </Link>
         <img id="hamburger" src="/hamburger.svg"    className={`${
         menuToggled ? 'hidden' : 'inline md:hidden'

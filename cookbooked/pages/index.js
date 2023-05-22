@@ -3,7 +3,8 @@ import clientPromise from '../lib/mongodb'
 import { InferGetServerSidePropsType } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import {math, fraction, format} from 'mathjs'
+import NavBar from '../components/NavBar'
+import { useState } from 'react'
 
 import { Heading } from '../components/styles/Text'
 import { Tag } from '../components/styles/Tag'
@@ -57,19 +58,22 @@ export async function getStaticProps(context) {
 // const math = create(all,  {})
 
 export default function Home({recipes}){
+  const [page, setPage] = useState('library')
+
   return (
     <div>
+        <NavBar page={page} setPage={setPage}/>
         <div className="flex flex-col items-center h-screen mx-auto mt-8">
         <div className="flex flex-col text-center items-center mt-36 w-5/6 md:w-screen">
         <div className="flex">
-            <Image
+            {/* <Image
               src="/logo.svg"
               width={36}
               height={36}
               alt="CookBooked chefs hat logo"
               className="mr-2"
-            />
-            <Heading>CookBooked</Heading>
+            /> */}
+            <Heading>My CookBook</Heading>
             {/* <div>{" + " + format(fraction(.5))}</div> */}
           </div>
           <form>
