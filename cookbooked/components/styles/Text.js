@@ -4,7 +4,7 @@ import { useIngredient } from '../../hooks/useIngredient'
  * Largest heading (font size of 36pt)
  */
 export const Heading = ({ children }) => (
-  <h1 className="text-4xl font-medium">{children}</h1>
+  <h1 className="text-3xl md:text-4xl font-medium">{children}</h1>
 )
 
 export const SubHeading = ({ children }) => (

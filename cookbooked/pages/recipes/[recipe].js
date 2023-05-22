@@ -107,7 +107,7 @@ export default function Recipe({recipe, ingreds, timers, steps}){
             // sectionTimes={TIMES}
             allTimers={allTimers}
           />
-          <div className="w-4/5 mt-10 px-16" style={{ marginLeft: '20%' }}>
+          <div className="w-screen md:w-4/5 mt-10 px-8 md:px-16 md:ml-[20%]">
             {displaySection(section)}
             {/* BODY HERE */}
             {/* {JSON.stringify(ingreds)} */}
