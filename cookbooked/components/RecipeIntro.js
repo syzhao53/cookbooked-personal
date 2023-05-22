@@ -6,7 +6,7 @@ import { useState } from 'react'
 import {fraction, format} from 'mathjs'
 import { useIngredient } from '../hooks/useIngredient'
 
-const RecipeIntro = ({recipe, ingreds, steps, timers, servMult, setServMult}) => {
+const RecipeIntro = ({recipe, ingreds, servMult, setServMult}) => {
   const [formatIngred] = useIngredient()
 
   const servingOptions = [
