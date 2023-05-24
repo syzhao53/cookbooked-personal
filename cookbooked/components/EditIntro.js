@@ -1,15 +1,28 @@
 import { Checkbox } from './Checkbox'
 import { Heading, SubHeading } from './styles/Text'
 import { Tag } from './styles/Tag'
+import { Input } from './styles/Input'
 import { useState } from 'react'
+import Select from 'react-select'
 // import clientPromise from '../lib/mongodb'
 
 
 
-const EditIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
-  const [title, setTitle] = useState('Recipe Title')
-
+const EditIntro = ({title, setTitle}) => {
+  const [tags, setTags] = useState([])
   const [recipeInfo, setRecipeInfo] = useState({title: title})
+  const defaultTitle = 'Recipe Title'
+  const tagOptions = [
+    { value: 'chicken', label: 'chicken' },
+    { value: 'beef', label: 'beef' },
+    { value: 'pork', label: 'pork' },
+    { value: 'veggies', label: 'veggies' },
+    { value: 'tofu', label: 'tofu' },
+    { value: 'pork', label: 'pork' },
+    { value: 'dessert', label: 'dessert' },
+    { value: 'spicy', label: 'spicy' },
+    { value: 'seafood', label: 'seafood' }
+  ]
 
   const testPost = async () => {
     // Send the data to the server in JSON format.
@@ -37,16 +50,24 @@ const EditIntro = ({duration, recipe, ingreds, servMult, setServMult}) => {
 
   return (
     <>
-      <div className="flex justify-between">
-        <div className="flex flex-row items-center">
-          <button onClick={() => testPost()} className="bg-rose-300">
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-row items-center mb-6">
+          {/* <button onClick={() => testPost()} className="bg-rose-300">
             TEST BUTTON
-          </button>
-            <input type="text" id="search" name="title" value={title}
+          </button> */}
+          <Input prop={title} setProp={setTitle} defaultText={defaultTitle} textType="large"/>
+          {/* <input type="text" id="search" name="title" value={title}
                 onChange={(e) => {setTitle(e.target.value)}}
-                onFocus={() => {setTitle('')}}
-                // onBlur={() => {'hellooooo'}}
-            className="border-0 focus:outline-none text-3xl lg:text-4xl font-medium text-med_gray"/>
+                onFocus={() => {title == defaultTitle && setTitle('')}}
+                onBlur={() => {title == '' && setTitle(defaultTitle)}}
+            className={`${title !== defaultTitle ? 'text-black' : 'text-med_gray'} border-0 focus:outline-none text-3xl lg:text-4xl font-medium`}/> */}
+        </div>
+        <div className="flex flex-row items-center text-base font-medium">
+          Tags:
+          <Select className="font-normal ml-2 w-1/3" options={tagOptions} isMulti/>
+        </div>
+        <div>
+
         </div>
       </div>
     </>

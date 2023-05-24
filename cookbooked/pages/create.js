@@ -6,6 +6,7 @@
 import NavBar from '../components/NavBar'
 import EditingSidebar from '../components/EditingSidebar'
 import EditIntro from '../components/EditIntro'
+import { useState } from 'react'
 
 
 const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
@@ -17,15 +18,17 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
 //     { multiplier: 2, display: 'x2' },
 //     { multiplier: 3, display: 'x3' },
 //   ]
+const [title, setTitle] = useState('Recipe Title')
+
 
   return (
     <>
       <NavBar />
       <div className="flex min-h-[calc(100vh-64px)]">
-        <EditingSidebar />
+        <EditingSidebar title={title} setTitle={setTitle}/>
 
         <div className="w-screen lg:w-4/5 mt-10 px-8 lg:px-16 lg:ml-[20%]">
-          <EditIntro />
+          <EditIntro title={title} setTitle={setTitle}/>
         </div>
       </div>
     </>
