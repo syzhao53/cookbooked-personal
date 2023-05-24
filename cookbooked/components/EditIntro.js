@@ -9,9 +9,15 @@ import Select from 'react-select'
 
 
 const EditIntro = ({title, setTitle}) => {
-  const [tags, setTags] = useState([])
-  const [recipeInfo, setRecipeInfo] = useState({title: title})
   const defaultTitle = 'Recipe Title'
+  const defaultDescrip = 'Write a description here for your recipe'
+  const defaultNotes = 'Add some tips or reminders here'
+
+  const [tags, setTags] = useState([])
+  const [descrip, setDescrip] = useState(defaultDescrip)
+  const [notes, setNotes] = useState(defaultNotes)
+  const [recipeInfo, setRecipeInfo] = useState({title: title})
+
   const tagOptions = [
     { value: 'chicken', label: 'chicken' },
     { value: 'beef', label: 'beef' },
@@ -56,18 +62,22 @@ const EditIntro = ({title, setTitle}) => {
             TEST BUTTON
           </button> */}
           <Input prop={title} setProp={setTitle} defaultText={defaultTitle} textType="large"/>
-          {/* <input type="text" id="search" name="title" value={title}
-                onChange={(e) => {setTitle(e.target.value)}}
-                onFocus={() => {title == defaultTitle && setTitle('')}}
-                onBlur={() => {title == '' && setTitle(defaultTitle)}}
-            className={`${title !== defaultTitle ? 'text-black' : 'text-med_gray'} border-0 focus:outline-none text-3xl lg:text-4xl font-medium`}/> */}
         </div>
-        <div className="flex flex-row items-center text-base font-medium">
+        <div className="flex flex-row items-center text-base font-medium mb-6">
           Tags:
           <Select className="font-normal ml-2 w-1/3" options={tagOptions} isMulti/>
         </div>
-        <div>
-
+        <div className="mb-32">
+          <SubHeading>Description</SubHeading>
+          <Input prop={descrip} setProp={setDescrip} defaultText={defaultDescrip} textType="base"/>
+        </div>
+        <div className="mb-6">
+          <SubHeading>Ingredients</SubHeading>
+          ingredients
+        </div>
+        <div className="mb-6">
+          <SubHeading>Notes</SubHeading>
+          <Input prop={notes} setProp={setNotes} defaultText={defaultNotes} textType="base"/>
         </div>
       </div>
     </>

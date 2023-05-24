@@ -4,8 +4,8 @@ const textSize = (text) => {
         return 'text-3xl lg:text-4xl'
       case 'medium':
           return 'text-3xl lg:text-4xl'
-      case 'small':
-          return 'text-3xl lg:text-4xl'  
+      case 'base':
+          return 'text-base font-normal'  
     }
 }
 
@@ -17,7 +17,7 @@ export const Input = ({ prop, setProp, defaultText, textType }) => {
             onBlur={() => {prop == '' && setProp(defaultText)}}
             className={`${prop !== defaultText ? 'text-black' : 'text-med_gray'} 
             ${textSize(textType)}
-            border-0 focus:outline-none font-medium`}
+            border-0 focus:outline-none font-medium w-full`}
         />
     )
   }
