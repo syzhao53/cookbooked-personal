@@ -3,14 +3,38 @@ import { CircleNumber } from './styles/Text'
 import { useState } from 'react'
 
 
-const EditingSidebar = ({title, setTitle}) => {
-  const [editingSection, setEditingSection] = useState('intro')
+const EditingSidebar = ({descrip, editingSection, setEditingSection, title, setTitle}) => {
   const [sections, setSections] = useState([title])
 
   const addSection = () => {
-    sections.push('Section')
-    alert('section added' + sections.length)
+    let copySections = sections.slice()
+    copySections.push('Section ' + (sections.length))
+    setSections(copySections)
   }
+
+
+  const renderSection = (sec, idx) => {
+    // {<span className={`${title !== 'Recipe Title' ? 'text-black' : 'text-med_gray'}`} >
+    // {title == 'Recipe Title' ? 'Recipe Overview' : title}</span>}
+
+    if (idx == 0) { // handle intro section
+      return <span className={`${title !== 'Recipe Title' ? 'text-black' : 'text-med_gray'}`} >
+      {title == 'Recipe Title' ? 'Recipe Overview' : title}</span>
+    } else {
+      return <span className={`${sec !== 'Section ' + idx ? 'text-black' : 'text-med_gray'}`} >
+      {sec}</span>
+    }
+  }
+
+  // const sectionStyle = (sec, idx) => {
+  //   if (idx == 0) {
+  //     if (sec !== 'Recipe Title') {
+  //       return 'text-black'
+  //     } else {
+  //       return 'text-med_gray'
+  //     }
+  //   }
+  // }
 
   return (
     <div
@@ -21,22 +45,23 @@ const EditingSidebar = ({title, setTitle}) => {
          <div
          key="section"
          className={`text-2xl cursor-pointer py-3 ${
-           editingSection === 'intro'
+           editingSection === idx
              ? 'bg-light_purple'
              : 'hover:bg-light_purple/50'
          }`}
-         onClick={() => setEditingSection('')}
+         onClick={() => setEditingSection(idx)}
        >
          <div
            className={`flex items-center ml-9 pr-5 ${
-             editingSection === 'intro' && 'font-medium'
+             editingSection === idx && 'font-medium'
            }`}
          >
            {/* {sectionIdx !== 0 && (
              <CircleNumber number={sectionIdx} />
            )} */}
-           {<span className={`${title !== 'Recipe Title' ? 'text-black' : 'text-med_gray'}`} >
-           {title == 'Recipe Title' ? 'Recipe Overview' : title}</span>}
+           {renderSection(sec, idx)}
+           {/* {<span className={`${title !== 'Recipe Title' ? 'text-black' : 'text-med_gray'}`} >
+           {title == 'Recipe Title' ? 'Recipe Overview' : title}</span>} */}
          </div>
          {/* {sectionIdx !== 0 && (
            <span className="pl-16 text-base text-gray">
