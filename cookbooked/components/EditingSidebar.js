@@ -1,14 +1,19 @@
 import React from 'react'
 import { CircleNumber } from './styles/Text'
 import { useState } from 'react'
+import { useSection } from '../hooks/useSection'
 
 
-const EditingSidebar = ({descrip, editingSection, setEditingSection, title, setTitle}) => {
-  const [sections, setSections] = useState([title])
+const EditingSidebar = ({sections, setSections, descrip, editingSection, setEditingSection, title, setTitle}) => {
+  // const sectionNew = useSection()
 
   const addSection = () => {
     let copySections = sections.slice()
+
+    // const secProp = useState('Section ' + (sections.length))
     copySections.push('Section ' + (sections.length))
+    // copySections.push(useTimer())
+
     setSections(copySections)
   }
 

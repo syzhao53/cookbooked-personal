@@ -27,6 +27,7 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
 
   const [descrip, setDescrip] = useState(defaultDescrip)
   const [notes, setNotes] = useState(defaultNotes)
+  const [sections, setSections] = useState([title])
 
 
 
@@ -34,11 +35,14 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
     <>
       <NavBar />
       <div className="flex min-h-[calc(100vh-64px)]">
-        <EditingSidebar descrip={descrip} editingSection={editingSection} setEditingSection={setEditingSection} title={title} setTitle={setTitle}/>
+        <EditingSidebar sections={sections} setSections={setSections} descrip={descrip} 
+        editingSection={editingSection} setEditingSection={setEditingSection} title={title} setTitle={setTitle}/>
 
         <div className="w-screen lg:w-4/5 mt-10 px-8 lg:px-16 lg:ml-[20%]">
-          {editingSection == 0 ? <EditIntro descrip={descrip} setDescrip={setDescrip} 
-          notes={notes} setNotes={setNotes} title={title} setTitle={setTitle} /> : <EditBody />}
+          {editingSection == 0 ? <EditIntro
+          descrip={descrip} setDescrip={setDescrip} 
+          notes={notes} setNotes={setNotes} title={title} setTitle={setTitle} /> 
+          : <EditBody sections={sections} editingSection={editingSection} />}
         </div>
       </div>
     </>
