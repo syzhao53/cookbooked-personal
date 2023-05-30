@@ -29,6 +29,9 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
   const [notes, setNotes] = useState(defaultNotes)
   const [sections, setSections] = useState([title])
 
+  const createSections = () => {
+
+  }
 
 
   return (
@@ -42,7 +45,7 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
           {editingSection == 0 ? <EditIntro
           descrip={descrip} setDescrip={setDescrip} 
           notes={notes} setNotes={setNotes} title={title} setTitle={setTitle} /> 
-          : <EditBody sections={sections} editingSection={editingSection} />}
+          : <EditBody sections={sections} setSections={setSections} editingSection={editingSection} />}
         </div>
       </div>
     </>

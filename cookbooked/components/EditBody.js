@@ -8,7 +8,7 @@ import Select from 'react-select'
 
 
 
-const EditBody = ({sections, editingSection}) => {
+const EditBody = ({sections, setSections, editingSection}) => {
   const defaultTitle = 'Recipe Title'
   const defaultDescrip = 'Write a description here for your recipe'
   const defaultNotes = 'Add some tips or reminders here'
@@ -44,7 +44,8 @@ const EditBody = ({sections, editingSection}) => {
           {/* <button onClick={() => testPost()} className="bg-rose-300">
             TEST BUTTON
           </button> */}
-          <Input prop={sections[editingSection[0]]} setProp={sections[editingSection[1]]} defaultText={'section default'} textType="large"/>
+          <Input idx={editingSection} sections={sections} setSections={setSections}
+          prop={sections[editingSection]} setProp={sections[editingSection]} defaultText={'Section ' + editingSection} textType="large"/>
         </div>
         {/* <div className="flex flex-row items-center text-base font-medium mb-6">
           Tags:

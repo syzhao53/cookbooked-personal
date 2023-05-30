@@ -10,9 +10,9 @@ const EditingSidebar = ({sections, setSections, descrip, editingSection, setEdit
   const addSection = () => {
     let copySections = sections.slice()
 
-    // const secProp = useState('Section ' + (sections.length))
+    // const [secProp, setSecProp] = useState('Section ' + (sections.length))
     copySections.push('Section ' + (sections.length))
-    // copySections.push(useTimer())
+    // copySections.push(secProp)
 
     setSections(copySections)
   }
