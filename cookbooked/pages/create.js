@@ -10,7 +10,7 @@ import EditBody from '../components/EditBody'
 import { useState } from 'react'
 
 
-const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
+const CreateRecipe = ({}) => {
 //   const [ingredients, servingSelected, changeServing, getIngredient] =
 //     useIngredient()
 //   const servingOptions = [
@@ -24,10 +24,14 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
 
   const defaultDescrip = 'Write a description here for your recipe'
   const defaultNotes = 'Add some tips or reminders here'
+  const defaultStep = 'Write a step for your recipe'
 
   const [descrip, setDescrip] = useState(defaultDescrip)
   const [notes, setNotes] = useState(defaultNotes)
   const [sections, setSections] = useState([title])
+  const [newSteps, setNewSteps] = useState([{text: defaultStep, timer: '', ingreds: []}])
+  // array of object, each obj has string, timer info, and ingreds
+  // track sections for steps too, check db
 
   const createSections = () => {
 
@@ -45,7 +49,8 @@ const CreateRecipe = ({section, recipe, ingreds, steps, timers, servMult}) => {
           {editingSection == 0 ? <EditIntro
           descrip={descrip} setDescrip={setDescrip} 
           notes={notes} setNotes={setNotes} title={title} setTitle={setTitle} /> 
-          : <EditBody sections={sections} setSections={setSections} editingSection={editingSection} />}
+          : <EditBody sections={sections} setSections={setSections} editingSection={editingSection} newSteps={newSteps}
+            setNewSteps={setNewSteps}/>}
         </div>
       </div>
     </>

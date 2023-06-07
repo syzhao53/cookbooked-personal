@@ -2,16 +2,18 @@ import { Checkbox } from './Checkbox'
 import { Heading, SubHeading } from './styles/Text'
 import { Tag } from './styles/Tag'
 import { Input } from './styles/Input'
+import { InputStep } from './styles/InputStep'
 import { useState } from 'react'
 import Select from 'react-select'
 // import clientPromise from '../lib/mongodb'
 
 
 
-const EditBody = ({sections, setSections, editingSection}) => {
+const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps}) => {
   const defaultTitle = 'Recipe Title'
   const defaultDescrip = 'Write a description here for your recipe'
   const defaultNotes = 'Add some tips or reminders here'
+  const defaultStep = 'Write a step for your recipe'
 
   const testPost = async () => {
     // Send the data to the server in JSON format.
@@ -46,6 +48,14 @@ const EditBody = ({sections, setSections, editingSection}) => {
           </button> */}
           <Input idx={editingSection} sections={sections} setSections={setSections}
           prop={sections[editingSection]} setProp={sections[editingSection]} defaultText={'Section ' + editingSection} textType="large"/>
+        </div>
+        <div>
+          <SubHeading>Steps</SubHeading>
+          {/* newSteps must be returned in a function, all step textareas */}
+          {newSteps.map((stepObj, idx) => (
+            <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepObj.text} defaultText={defaultStep} idx={idx}/>
+          ))}
+          {/* <InputStep prop={newSteps} setProp={setNewSteps} defaultText={defaultStep} textType="base"/> */}
         </div>
         {/* <div className="flex flex-row items-center text-base font-medium mb-6">
           Tags:

@@ -61,9 +61,9 @@ const EditingSidebar = ({sections, setSections, descrip, editingSection, setEdit
              editingSection === idx && 'font-medium'
            }`}
          >
-           {/* {sectionIdx !== 0 && (
-             <CircleNumber number={sectionIdx} />
-           )} */}
+           {idx !== 0 && (
+             <CircleNumber number={idx} />
+           )}
            {renderSection(sec, idx)}
            {/* {<span className={`${title !== 'Recipe Title' ? 'text-black' : 'text-med_gray'}`} >
            {title == 'Recipe Title' ? 'Recipe Overview' : title}</span>} */}
