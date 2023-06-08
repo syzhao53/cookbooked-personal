@@ -1,4 +1,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
+import { useState } from 'react'
+
+let numbered = false
 
 const textSize = (text) => {
     switch (text) {
@@ -21,7 +24,7 @@ const updateStep = (text, newSteps, setNewSteps, idx) => {
     setNewSteps(copySteps)
 }
 
-const blurHandler = (prop, sections, setSections, setProp, defaultText, idx) => {
+const blurHandler = (prop, newSteps, setNewSteps, setProp, defaultText, idx) => {
     if (prop == '') {
       if (sections == undefined) {
         setProp(defaultText)
@@ -35,17 +38,36 @@ const blurHandler = (prop, sections, setSections, setProp, defaultText, idx) => 
     return 
 }
 
+const numberStep = (prop, idx) => {
+    numbered = true
+
+    return (idx + 1) + ". " + prop
+}
+
+// value={!numbered ? numberStep(prop) : prop}
+
 export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx}) => {
+    const [toolbar, setToolbar] = useState(false)
+    const toggleToolbar = () => {
+      setToolbar(!toolbar)
+    }
+
     return (
-        <TextareaAutosize minRows={1} type="text" value={prop}
-            // onChange={(e) => {sections == undefined ? setProp(e.target.value)
-            //     : updateSectionName(e.target.value, sections, setSections, idx)}}
-            onFocus={() => {prop == defaultText && updateStep('', newSteps, setNewSteps, idx)}}
-            // onBlur={() => {blurHandler(prop, sections, setSections, setProp, defaultText, idx)}}
-            className={`${prop !== defaultText ? 'text-black' : 'text-med_gray'} 
-            text-base font-normal  
-            border-0 focus:outline-none font-medium w-full resize-none overflow-visible bg-bg_white`}
-        />
+        <div className="flex flex-row">
+            <div className={`${toolbar ? 'flex flex-row' : 'hidden'} border-solid border-2`}>
+              toolbar
+            </div>
+            <TextareaAutosize minRows={1} type="text" value={prop}
+              onChange={(e) => {updateStep(e.target.value, newSteps, setNewSteps, idx)}}
+              onFocus={() => {prop == defaultText && updateStep('', newSteps, setNewSteps, idx)}}
+              onBlur={() => {prop == '' && updateStep(defaultText, newSteps, setNewSteps, idx)}}
+              onMouseOver={() => toggleToolbar()}
+              onMouseOut={() => toggleToolbar()}
+              className={`${prop !== defaultText ? 'text-black' : 'text-med_gray'} 
+              text-base font-normal  
+              border-0 focus:outline-none font-medium w-full resize-none overflow-visible bg-bg_white`}
+            />
+          </div>
     )
   }
 
