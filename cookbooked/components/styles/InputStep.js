@@ -1,5 +1,6 @@
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from 'react'
+import { ClockIcon, LawIcon } from '@primer/octicons-react'
 
 let numbered = false
 
@@ -48,14 +49,18 @@ const numberStep = (prop, idx) => {
 
 export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx}) => {
     const [toolbar, setToolbar] = useState(false)
+
     const toggleToolbar = () => {
       setToolbar(!toolbar)
     }
 
     return (
-        <div className="flex flex-row">
-            <div className={`${toolbar ? 'flex flex-row' : 'hidden'} border-solid border-2`}>
-              toolbar
+        <div className="flex flex-row items-center">
+            <div className={`${toolbar ? 'flex flex-col justify-center' : 'hidden'} px-4 
+            py-2 drop-shadow-sm bg-bg_white mr-2`}>
+              <ClockIcon size={16} className="mb-4" />
+              {/* <LawIcon size={16} /> */}
+              <img src="/carrot-icon.svg" className="w-6"/>
             </div>
             <TextareaAutosize minRows={1} type="text" value={prop}
               onChange={(e) => {updateStep(e.target.value, newSteps, setNewSteps, idx)}}

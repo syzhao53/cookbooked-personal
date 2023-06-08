@@ -2,6 +2,8 @@ import React from 'react'
 import { CircleNumber } from './styles/Text'
 import { useState } from 'react'
 import { useSection } from '../hooks/useSection'
+import { PlusIcon } from '@primer/octicons-react'
+
 
 
 const EditingSidebar = ({sections, setSections, descrip, editingSection, setEditingSection, title, setTitle}) => {
@@ -115,9 +117,14 @@ const EditingSidebar = ({sections, setSections, descrip, editingSection, setEdit
           )
         }
       )} */}
-              <button onClick={() => addSection()} className="bg-green-300 mt-6">
-                Add Section
-              </button>
+      <div>
+        {/* <div className="border-solid border-t-2 w-[60%] ml-9 border-med_gray" /> */}
+        <button onClick={() => addSection()} className="flex flex-row items-center text-xl ml-9 mt-7
+        hover:border-b-2 hover:border-solid hover:border-med_gray">
+          <PlusIcon size={16} className="mr-2"/>
+          Add Section
+        </button>
+      </div>
     </div>
   )
 }

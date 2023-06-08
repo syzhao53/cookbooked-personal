@@ -13,6 +13,9 @@ module.exports = withMT({
       sans: ['"Work Sans"', 'sans-serif'],
     },
     extend: {
+      dropShadow: {
+        'sm': '0 0 3px rgb(0, 0, 0, .18)',
+      },
       colors: {
         rose: colors.rose,
         pink: colors.pink,
