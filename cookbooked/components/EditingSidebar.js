@@ -22,6 +22,7 @@ const EditingSidebar = ({sections, setSections, descrip, editingSection, setEdit
 
     setSections(copySections)
     setNewSteps(copySteps)
+    setEditingSection(sections.length)
   }
 
 
