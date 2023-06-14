@@ -52,8 +52,8 @@ const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps}
         <div>
           <SubHeading>Steps</SubHeading>
           {/* newSteps must be returned in a function, all step textareas */}
-          {newSteps.map((stepObj, idx) => (
-            <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepObj.text} defaultText={defaultStep} idx={idx}/>
+          {(newSteps[editingSection - 1].text).map((stepArr, idx) => (
+            <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepArr} defaultText={defaultStep} idx={idx} editingSection={editingSection}/>
           ))}
           {/* <InputStep prop={newSteps} setProp={setNewSteps} defaultText={defaultStep} textType="base"/> */}
         </div>

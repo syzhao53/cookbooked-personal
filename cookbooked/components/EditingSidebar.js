@@ -6,17 +6,22 @@ import { PlusIcon } from '@primer/octicons-react'
 
 
 
-const EditingSidebar = ({sections, setSections, descrip, editingSection, setEditingSection, title, setTitle}) => {
+const EditingSidebar = ({sections, setSections, descrip, editingSection, setEditingSection,
+  title, setTitle, newSteps, setNewSteps}) => {
   // const sectionNew = useSection()
 
   const addSection = () => {
     let copySections = sections.slice()
+    let copySteps = newSteps.slice()
 
     // const [secProp, setSecProp] = useState('Section ' + (sections.length))
     copySections.push('Section ' + (sections.length))
     // copySections.push(secProp)
 
+    copySteps.push({text: ["Write a step for your recipe"], timer: '', ingreds: []})
+
     setSections(copySections)
+    setNewSteps(copySteps)
   }
 
 

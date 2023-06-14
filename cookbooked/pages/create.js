@@ -29,7 +29,7 @@ const CreateRecipe = ({}) => {
   const [descrip, setDescrip] = useState(defaultDescrip)
   const [notes, setNotes] = useState(defaultNotes)
   const [sections, setSections] = useState([title])
-  const [newSteps, setNewSteps] = useState([{text: defaultStep, timer: '', ingreds: []}])
+  const [newSteps, setNewSteps] = useState([{text: [defaultStep], timer: '', ingreds: []}])
   // array of object, each obj has string, timer info, and ingreds
   // track sections for steps too, check db
 
@@ -43,7 +43,8 @@ const CreateRecipe = ({}) => {
       <NavBar />
       <div className="flex min-h-[calc(100vh-64px)]">
         <EditingSidebar sections={sections} setSections={setSections} descrip={descrip} 
-        editingSection={editingSection} setEditingSection={setEditingSection} title={title} setTitle={setTitle}/>
+        editingSection={editingSection} setEditingSection={setEditingSection} title={title} setTitle={setTitle}
+        newSteps={newSteps} setNewSteps={setNewSteps}/>
 
         <div className="w-screen lg:w-4/5 mt-10 px-8 lg:px-16 lg:ml-[20%]">
           {editingSection == 0 ? <EditIntro

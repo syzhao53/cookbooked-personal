@@ -15,9 +15,9 @@ const textSize = (text) => {
     }
 }
 
-const updateStep = (text, newSteps, setNewSteps, idx) => {
+const updateStep = (text, newSteps, setNewSteps, idx, editingSection) => {
     let copySteps = newSteps.slice()
-    copySteps[idx].text = text
+    copySteps[editingSection - 1].text[idx] = text
 
     // copySections.splice(idx, 0, text)
     // copySections.push(secProp)
@@ -47,7 +47,7 @@ const numberStep = (prop, idx) => {
 
 // value={!numbered ? numberStep(prop) : prop}
 
-export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx}) => {
+export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx, editingSection}) => {
     const [toolbar, setToolbar] = useState(false)
 
     const toggleToolbar = () => {
@@ -56,16 +56,18 @@ export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx}) => {
 
     return (
         <div className="flex flex-row items-center">
-            <div className={`${toolbar ? 'flex flex-col justify-center' : 'hidden'} px-4 
+            {/* <div className={`${toolbar ? 'flex flex-col justify-center' : 'hidden'} px-4 
             py-2 drop-shadow-sm bg-bg_white mr-2`}>
               <ClockIcon size={16} className="mb-4" />
-              {/* <LawIcon size={16} /> */}
               <img src="/carrot-icon.svg" className="w-6"/>
-            </div>
+            </div> */}
+            <span className={`${prop !== defaultText ? 'text-black' : 'text-med_gray'}`}>
+              {idx + 1 + "."}&nbsp;
+            </span>
             <TextareaAutosize minRows={1} type="text" value={prop}
-              onChange={(e) => {updateStep(e.target.value, newSteps, setNewSteps, idx)}}
-              onFocus={() => {prop == defaultText && updateStep('', newSteps, setNewSteps, idx)}}
-              onBlur={() => {prop == '' && updateStep(defaultText, newSteps, setNewSteps, idx)}}
+              onChange={(e) => {updateStep(e.target.value, newSteps, setNewSteps, idx, editingSection)}}
+              onFocus={() => {prop == defaultText && updateStep('', newSteps, setNewSteps, idx, editingSection)}}
+              onBlur={() => {prop == '' && updateStep(defaultText, newSteps, setNewSteps, idx, editingSection)}}
               onMouseOver={() => toggleToolbar()}
               onMouseOut={() => toggleToolbar()}
               className={`${prop !== defaultText ? 'text-black' : 'text-med_gray'} 
@@ -75,6 +77,7 @@ export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx}) => {
           </div>
     )
   }
+  // DO NUMBERING WITH SPAN NEXT TO TEXTAREA
 
   // how would you know what step/line you're in when you click to edit a step?
   // should probably just handle it via parsing the whole block of text after to split into steps
