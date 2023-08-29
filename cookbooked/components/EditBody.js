@@ -9,7 +9,7 @@ import Select from 'react-select'
 
 
 
-const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps}) => {
+const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps, notes, setNotes}) => {
   const defaultTitle = 'Recipe Title'
   const defaultDescrip = 'Write a description here for your recipe'
   const defaultNotes = 'Add some tips or reminders here'
@@ -52,9 +52,15 @@ const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps}
         <div>
           <SubHeading>Steps</SubHeading>
           {/* newSteps must be returned in a function, all step textareas */}
-          {(newSteps[editingSection - 1].text).map((stepArr, idx) => (
+          {/* {Object.entries(newSteps[editingSection - 1]).map(([stepKey, stepVal], idx) => (
             <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepArr} defaultText={defaultStep} idx={idx} editingSection={editingSection}/>
+          ))} */}
+          {/* working version */}
+          {(newSteps[editingSection - 1].text).map((stepArr, idx) => (
+            <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepArr} defaultText={defaultStep} idx={idx} editingSection={editingSection}
+            timers={newSteps[editingSection - 1].timers}/>
           ))}
+
           {/* <InputStep prop={newSteps} setProp={setNewSteps} defaultText={defaultStep} textType="base"/> */}
         </div>
         {/* <div className="flex flex-row items-center text-base font-medium mb-6">
@@ -73,6 +79,10 @@ const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps}
           <SubHeading>Notes</SubHeading>
           <Input prop={notes} setProp={setNotes} defaultText={defaultNotes} textType="base"/>
         </div> */}
+        <div className="mb-6">
+          <SubHeading>Notes</SubHeading>
+          <Input prop={notes} setProp={setNotes} defaultText={defaultNotes} textType="base"/>
+        </div>
       </div>
     </>
   )

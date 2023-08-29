@@ -25,11 +25,14 @@ const CreateRecipe = ({}) => {
   const defaultDescrip = 'Write a description here for your recipe'
   const defaultNotes = 'Add some tips or reminders here'
   const defaultStep = 'Write a step for your recipe'
+  const defaultTime = '00'
 
   const [descrip, setDescrip] = useState(defaultDescrip)
   const [notes, setNotes] = useState(defaultNotes)
   const [sections, setSections] = useState([title])
-  const [newSteps, setNewSteps] = useState([{text: [defaultStep], timer: '', ingreds: []}])
+  const [newSteps, setNewSteps] = useState([{text: [defaultStep],
+    timers: [{h: defaultTime, m: defaultTime, s: defaultTime }],
+    ingreds: []}])
   // array of object, each obj has string, timer info, and ingreds
   // track sections for steps too, check db
 
@@ -51,7 +54,7 @@ const CreateRecipe = ({}) => {
           descrip={descrip} setDescrip={setDescrip} 
           notes={notes} setNotes={setNotes} title={title} setTitle={setTitle} /> 
           : <EditBody sections={sections} setSections={setSections} editingSection={editingSection} newSteps={newSteps}
-            setNewSteps={setNewSteps}/>}
+            setNewSteps={setNewSteps} notes={notes} setNotes={setNotes}/>}
         </div>
       </div>
     </>
