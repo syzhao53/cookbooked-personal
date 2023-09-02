@@ -8,10 +8,11 @@ import Select from 'react-select'
 
 
 
-const EditIntro = ({descrip, setDescrip, notes, setNotes, title, setTitle}) => {
+const EditIntro = ({descrip, setDescrip, allIngreds, setAllIngreds, notes, setNotes, title, setTitle}) => {
   const defaultTitle = 'Recipe Title'
   const defaultDescrip = 'Write a description here for your recipe'
   const defaultNotes = 'Add some tips or reminders here'
+  const defaultIngreds = 'List your ingredients (quantity, name, unit)'
 
   const [tags, setTags] = useState([])
   const [recipeInfo, setRecipeInfo] = useState({title: title})
@@ -72,7 +73,9 @@ const EditIntro = ({descrip, setDescrip, notes, setNotes, title, setTitle}) => {
         <div className="mb-6">
           <SubHeading>Ingredients</SubHeading>
           {/* TODO: write ingredients adding (quant, name, unit?) */}
-          ingredients
+          {allIngreds.map((ingred, idx) => (
+            <Input prop={allIngreds[idx]} setProp={setAllIngreds} defaultText={defaultIngreds} textType="base"/>
+          ))}
         </div>
         <div className="mb-6">
           <SubHeading>Notes</SubHeading>

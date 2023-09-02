@@ -26,10 +26,14 @@ const CreateRecipe = ({}) => {
   const defaultNotes = 'Add some tips or reminders here'
   const defaultStep = 'Write a step for your recipe'
   const defaultTime = '00'
+  const defaultIngreds = 'List your ingredients (quantity, name, unit)'
 
+  // how to handle ingreds prop -> shared across EditIntro and EditBody
+  // (no, should be accessed by both but separate since EditBody splits by step)
   const [descrip, setDescrip] = useState(defaultDescrip)
   const [notes, setNotes] = useState(defaultNotes)
   const [sections, setSections] = useState([title])
+  const [allIngreds, setAllIngreds] = useState([defaultIngreds])
 
   // TODO:  generate unique key -> or is it somewhere else, does each step's text need it's own key
   const [newSteps, setNewSteps] = useState([{text: [defaultStep],
@@ -53,7 +57,7 @@ const CreateRecipe = ({}) => {
 
         <div className="w-screen lg:w-4/5 mt-10 px-8 lg:px-16 lg:ml-[20%]">
           {editingSection == 0 ? <EditIntro
-          descrip={descrip} setDescrip={setDescrip} 
+          descrip={descrip} setDescrip={setDescrip} allIngreds= {allIngreds} setAllIngreds={setAllIngreds}
           notes={notes} setNotes={setNotes} title={title} setTitle={setTitle} /> 
           : <EditBody sections={sections} setSections={setSections} editingSection={editingSection} newSteps={newSteps}
             setNewSteps={setNewSteps} notes={notes} setNotes={setNotes}/>}
