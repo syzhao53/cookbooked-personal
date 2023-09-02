@@ -18,7 +18,7 @@ const EditingSidebar = ({sections, setSections, descrip, editingSection, setEdit
     copySections.push('Section ' + (sections.length))
     // copySections.push(secProp)
 
-    copySteps.push({text: ["Write a step for your recipe"], timer: '', ingreds: []})
+    copySteps.push({text: ["Write a step for your recipe"], timers: [{h: '00', m: '00', s: '00' }], ingreds: []})
 
     setSections(copySections)
     setNewSteps(copySteps)

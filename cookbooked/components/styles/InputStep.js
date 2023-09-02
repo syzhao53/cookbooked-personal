@@ -46,11 +46,22 @@ const numberStep = (prop, idx) => {
 }
 
 const addStep = (defaultText, newSteps, setNewSteps, idx, editingSection) => {
+  alert('Add step entered')
+  // const [newSteps, setNewSteps] = useState([{text: [defaultStep],
+  //   timers: [{h: defaultTime, m: defaultTime, s: defaultTime }],
+  //   ingreds: []}])
+
   let copySteps  = newSteps.slice()
 
-  copySteps[editingSection - 1].text.push(defaultText)
+  // update fields
+  copySteps[editingSection].text.push(defaultText)
+  copySteps[editingSection].timers.push({h: '00', m: '00', s: '00' })
+  copySteps[editingSection].ingreds.push([])
 
   setNewSteps(copySteps)
+
+  // need to re-render
+  alert(JSON.stringify(newSteps))
 }
 
 // obsolete since updateTimer added?
@@ -64,14 +75,28 @@ const addTimer = (newSteps, setNewSteps, idx, editingSection) => {
   setNewSteps(copySteps)
 }
 
-const updateTimer = (newSteps, setNewSteps, idx, editingSection) => {
-  let copySteps = newSteps.slice()
-  copySteps[editingSection - 1].text[idx] = "TIMER ADDED"
+const updateTimer = (time, newSteps, setNewSteps, idx, editingSection, timeType) => {
+  if (!isNaN(time)) {
+    let copySteps = newSteps.slice()
 
-  // copySections.splice(idx, 0, text)
-  // copySections.push(secProp)
+    switch(timeType) {
+      case "h":
+        copySteps[editingSection - 1].timers[idx].h = time
+        break;
+      case "m":
+        copySteps[editingSection - 1].timers[idx].m = time
+        break;
+      case "s":
+        copySteps[editingSection - 1].timers[idx].s = time
+        break;
+      default:
+        return
+    }
 
-  setNewSteps(copySteps)
+    setNewSteps(copySteps)
+  }
+
+  return
 }
 
 // value={!numbered ? numberStep(prop) : prop}
@@ -114,11 +139,13 @@ export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx, editi
             <ClockIcon size={16} className="mr-2"/>
             <div>
               <input type='text' value={timers[idx].h} 
-                onChange={(e) => {updateTimer(e.target.value, newSteps, setNewSteps, idx, editingSection, "h")}}className='w-5 text-right focus:outline-0'></input>
+                onChange={(e) => {updateTimer(e.target.value, newSteps, setNewSteps, idx, editingSection, "h")}} className='w-5 text-right focus:outline-0'></input>
               <span className='m-0 p-0 text-sm'>h</span>
-              <input type='text' value={timers[idx].m} className='w-6 text-right focus:outline-0'></input>
+              <input type='text' value={timers[idx].m}
+                onChange={(e) => {updateTimer(e.target.value, newSteps, setNewSteps, idx, editingSection, "m")}} className='w-6 text-right focus:outline-0'></input>
               <span className='m-0 p-0 text-sm'>m</span>
-              <input type='text' value={timers[idx].s} className='w-6 text-right focus:outline-0'></input>
+              <input type='text' value={timers[idx].s}
+                onChange={(e) => {updateTimer(e.target.value, newSteps, setNewSteps, idx, editingSection, "s")}} className='w-6 text-right focus:outline-0'></input>
               <span className='m-0 p-0 text-sm'>s</span>
             </div>
           </div>

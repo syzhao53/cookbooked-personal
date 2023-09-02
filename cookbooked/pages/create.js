@@ -32,7 +32,7 @@ const CreateRecipe = ({}) => {
   const [sections, setSections] = useState([title])
   const [newSteps, setNewSteps] = useState([{text: [defaultStep],
     timers: [{h: defaultTime, m: defaultTime, s: defaultTime }],
-    ingreds: []}])
+    ingreds: []}]) // should ingreds be a 2d arr
   // array of object, each obj has string, timer info, and ingreds
   // track sections for steps too, check db
 
