@@ -71,6 +71,7 @@ const EditIntro = ({descrip, setDescrip, notes, setNotes, title, setTitle}) => {
         </div>
         <div className="mb-6">
           <SubHeading>Ingredients</SubHeading>
+          {/* TODO: write ingredients adding (quant, name, unit?) */}
           ingredients
         </div>
         <div className="mb-6">

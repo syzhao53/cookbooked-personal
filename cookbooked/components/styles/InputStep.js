@@ -149,6 +149,9 @@ export const InputStep = ({ newSteps, setNewSteps, prop, defaultText, idx, editi
               <span className='m-0 p-0 text-sm'>s</span>
             </div>
           </div>
+          {(newSteps[editingSection - 1].text).map((stepArr, idx) => ( 
+              <div key={"" + (editingSection - 1) + idx}>{stepArr}</div>
+            ))}
           </div>
 
     )

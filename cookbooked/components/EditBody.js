@@ -56,6 +56,7 @@ const EditBody = ({sections, setSections, editingSection, newSteps, setNewSteps,
             <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepArr} defaultText={defaultStep} idx={idx} editingSection={editingSection}/>
           ))} */}
           {/* working version */}
+          {/* NEVER REFIRES*/}
           {(newSteps[editingSection - 1].text).map((stepArr, idx) => (
             <InputStep newSteps={newSteps} setNewSteps={setNewSteps} prop={stepArr} defaultText={defaultStep} idx={idx} editingSection={editingSection}
             timers={newSteps[editingSection - 1].timers}/>

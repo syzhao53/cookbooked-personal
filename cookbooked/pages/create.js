@@ -30,6 +30,8 @@ const CreateRecipe = ({}) => {
   const [descrip, setDescrip] = useState(defaultDescrip)
   const [notes, setNotes] = useState(defaultNotes)
   const [sections, setSections] = useState([title])
+
+  // TODO:  generate unique key -> or is it somewhere else, does each step's text need it's own key
   const [newSteps, setNewSteps] = useState([{text: [defaultStep],
     timers: [{h: defaultTime, m: defaultTime, s: defaultTime }],
     ingreds: []}]) // should ingreds be a 2d arr
