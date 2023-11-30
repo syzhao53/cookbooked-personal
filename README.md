@@ -5,11 +5,9 @@ Recipe app implemented with Next.js framework and MongoDB backend
 Expansion of project from spring 2023: 
 <ol>
   <li>
-    Original repository:&nbsp;
-    <a href="https://github.com/jasminecao/cookbooked"/>
+    <a href="https://github.com/jasminecao/cookbooked">Original repository</a>
   </li>
   <li>
-    Case study:&nbsp;
-    <a href="https://www.sylvia-zhao.com/#/cookbooked"/>
+    <a href="https://www.sylvia-zhao.com/#/cookbooked">Case study</a>
   </li>
 </ol>
