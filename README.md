@@ -8,7 +8,7 @@ Expansion of project from spring 2023:
     Original repository:&nbsp;
     <a href="https://github.com/jasminecao/cookbooked"/>
   </li>
-  <li>>
+  <li>
     Case study:&nbsp;
     <a href="https://www.sylvia-zhao.com/#/cookbooked"/>
   </li>
